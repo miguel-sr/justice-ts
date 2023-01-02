@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { config } from "dotenv";
+import { MongoClient } from "./database/mongo";
 
 const main = async () => {
   config();
@@ -15,6 +16,8 @@ const main = async () => {
   // ==> Morgan
   app.use(morgan("dev"));
   app.use(cors());
+
+  await MongoClient.connect();
 
   app.get("/api/v1", (req, res) => {
     res.status(200).send({
