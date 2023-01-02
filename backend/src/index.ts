@@ -3,6 +3,8 @@ import morgan from "morgan";
 import cors from "cors";
 import { config } from "dotenv";
 import { MongoClient } from "./database/mongo";
+import authRoutes from "./routes/auth.routes";
+import userRoutes from "./routes/user.routes";
 
 const main = async () => {
   config();
@@ -26,6 +28,9 @@ const main = async () => {
       version: "1.0.0",
     });
   });
+
+  app.use("/api/v1", authRoutes);
+  app.use("/api/v1", userRoutes);
 
   const port = process.env.PORT || 8089;
 
