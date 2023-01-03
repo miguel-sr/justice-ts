@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { LoginUserController } from "../controllers/user/login-user/login-user";
+import { LoginUserController } from "../controllers/auth/login-user/login-user";
 import auth from "../middlewares/auth";
 import { MongoLoginUserRepository } from "../repositories/auth/login-user/mongo-login-user";
 import getCache from "../services/cache.service";
