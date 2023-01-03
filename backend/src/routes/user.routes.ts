@@ -18,11 +18,11 @@ routes.get("/users", auth, async (req, res) => {
 });
 
 routes.post("/users", auth, async (req, res) => {
-  const mongoCreateUsersRepository = new MongoCreateUserRepository();
-  const createUsersController = new CreateUserController(
-    mongoCreateUsersRepository
+  const mongoCreateUserRepository = new MongoCreateUserRepository();
+  const createUserController = new CreateUserController(
+    mongoCreateUserRepository
   );
-  const { body, statusCode } = await createUsersController.handle({
+  const { body, statusCode } = await createUserController.handle({
     body: req.body,
   });
   res.status(statusCode).send(body);
