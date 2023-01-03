@@ -3,7 +3,7 @@ import { badRequest, ok, serverError } from "../../helpers";
 import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 import { IUpdateCategoryParams, IUpdateCategoryRepository } from "./protocols";
 
-export class UpdateUserController implements IController {
+export class UpdateCategoryController implements IController {
   constructor(
     private readonly updateCategoryRepository: IUpdateCategoryRepository
   ) {}

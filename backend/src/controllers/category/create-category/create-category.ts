@@ -3,7 +3,7 @@ import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 import { ICreateCategoryParams, ICreateCategoryRepository } from "./protocols";
 import { Category } from "../../../models/category";
 
-export class CreateUserController implements IController {
+export class CreateCategoryController implements IController {
   constructor(
     private readonly createCategoryRepository: ICreateCategoryRepository
   ) {}
