@@ -1,0 +1,37 @@
+import { badRequest, created, serverError } from "../../helpers";
+import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
+import { ICreateCategoryParams, ICreateCategoryRepository } from "./protocols";
+import { Category } from "../../../models/category";
+
+export class CreateUserController implements IController {
+  constructor(
+    private readonly createCategoryRepository: ICreateCategoryRepository
+  ) {}
+
+  async handle(
+    httpRequest: IHttpRequest<ICreateCategoryParams>
+  ): Promise<IHttpResponse<Category | string>> {
+    try {
+      const requiredFields = ["name"];
+
+      for (const field of requiredFields) {
+        if (
+          !httpRequest?.body?.[field as keyof ICreateCategoryParams]?.length
+        ) {
+          return badRequest(`Field ${field} is required.`);
+        }
+      }
+
+      if (httpRequest.body) {
+        const category = await this.createCategoryRepository.createCategory(
+          httpRequest.body
+        );
+
+        return created<Category>(category);
+      }
+      return serverError();
+    } catch (error) {
+      return serverError();
+    }
+  }
+}
