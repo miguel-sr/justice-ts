@@ -16,13 +16,15 @@ export class CreateCategoryController implements IController {
 
       for (const field of requiredFields) {
         if (
-          !httpRequest?.body?.[field as keyof ICreateCategoryParams]?.length
+          !httpRequest?.body?.[field as keyof ICreateCategoryParams]?.valueOf
         ) {
           return badRequest(`Field ${field} is required.`);
         }
       }
 
       if (httpRequest.body) {
+        httpRequest.body.createdAt = new Date();
+
         const category = await this.createCategoryRepository.createCategory(
           httpRequest.body
         );
