@@ -6,7 +6,7 @@ import { badRequest, created, serverError } from "../../helpers";
 import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 import { SocialAction } from "../../../models/social-action";
 
-export class CreateEventController implements IController {
+export class CreateSocialActionController implements IController {
   constructor(
     private readonly createSocialActionRepository: ICreateSocialActionRepository
   ) {}

@@ -6,6 +6,7 @@ import { MongoClient } from "./database/mongo";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
+import socialActionRoutes from "./routes/social-action.routes";
 
 const main = async () => {
   config();
@@ -33,6 +34,7 @@ const main = async () => {
   app.use("/api/v1", authRoutes);
   app.use("/api/v1", userRoutes);
   app.use("/api/v1", categoryRoutes);
+  app.use("/api/v1", socialActionRoutes);
 
   const port = process.env.PORT || 8089;
 

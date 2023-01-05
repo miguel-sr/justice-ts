@@ -3,7 +3,7 @@ import { badRequest, ok, serverError } from "../../helpers";
 import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 import { IDeleteSocialActionRepository } from "./protocols";
 
-export class DeleteCategoryController implements IController {
+export class DeleteSocialActionController implements IController {
   constructor(
     private readonly deleteSocialActionRepository: IDeleteSocialActionRepository
   ) {}
