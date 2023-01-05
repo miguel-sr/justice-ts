@@ -4,7 +4,7 @@ import { GetCategoriesController } from "../controllers/category/get-categories/
 import { MongoGetCategoriesRepository } from "../repositories/category/get-categories/mongo-get-categories";
 import { MongoCreateCategoryRepository } from "../repositories/category/create-category/mongo-create-category";
 import { CreateCategoryController } from "../controllers/category/create-category/create-category";
-import { MongoUpdateCategoryRepository } from "../repositories/category/update-category/mongo-update-categories";
+import { MongoUpdateCategoryRepository } from "../repositories/category/update-category/mongo-update-category";
 import { UpdateCategoryController } from "../controllers/category/update-category/update-category";
 import { MongoDeleteCategoryRepository } from "../repositories/category/delete-category/mongo-delete-category";
 import { DeleteCategoryController } from "../controllers/category/delete-category/delete-category";
