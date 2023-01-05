@@ -6,7 +6,7 @@ import { MongoClient } from "../../../database/mongo";
 import { SocialAction } from "../../../models/social-action";
 import { MongoSocialAction } from "../../mongo-protocols";
 
-export class MongoCreateEventRepository
+export class MongoCreateSocialActionRepository
   implements ICreateSocialActionRepository
 {
   async createSocialAction(

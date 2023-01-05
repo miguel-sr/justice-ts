@@ -7,7 +7,7 @@ import { MongoClient } from "../../../database/mongo";
 import { SocialAction } from "../../../models/social-action";
 import { MongoSocialAction } from "../../mongo-protocols";
 
-export class MongoUpdateCategoryRepository
+export class MongoUpdateSocialActionRepository
   implements IUpdateSocialActionRepository
 {
   async updateSocialAction(

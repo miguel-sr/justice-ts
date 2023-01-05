@@ -4,7 +4,7 @@ import { MongoClient } from "../../../database/mongo";
 import { SocialAction } from "../../../models/social-action";
 import { MongoSocialAction } from "../../mongo-protocols";
 
-export class MongoDeleteCategoryRepository
+export class MongoDeleteSocialActionRepository
   implements IDeleteSocialActionRepository
 {
   async deleteSocialAction(id: string): Promise<SocialAction> {
