@@ -10,10 +10,12 @@ import { MongoGetUsersRepository } from "../repositories/user/get-users/mongo-ge
 import { MongoUpdateUserRepository } from "../repositories/user/update-user/mongo-update-user";
 const routes = Router();
 
-routes.get("/users", auth, async (req, res) => {
+routes.get("/users/:id?", auth, async (req, res) => {
   const mongoGetUsersRepository = new MongoGetUsersRepository();
   const getUsersController = new GetUsersController(mongoGetUsersRepository);
-  const { body, statusCode } = await getUsersController.handle();
+  const { body, statusCode } = await getUsersController.handle({
+    params: req.params,
+  });
   res.status(statusCode).send(body);
 });
 
