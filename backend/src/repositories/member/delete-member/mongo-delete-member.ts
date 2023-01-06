@@ -4,9 +4,7 @@ import { MongoClient } from "../../../database/mongo";
 import { Member } from "../../../models/member";
 import { MongoMember } from "../../mongo-protocols";
 
-export class MongoDeleteSocialActionRepository
-  implements IDeleteMemberRepository
-{
+export class MongoDeleteMemberRepository implements IDeleteMemberRepository {
   async deleteMember(id: string): Promise<Member> {
     const member = await MongoClient.db
       .collection<MongoMember>("members")
