@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
 import socialActionRoutes from "./routes/social-action.routes";
+import memberRoutes from "./routes/member.routes";
 
 const main = async () => {
   config();
@@ -35,6 +36,7 @@ const main = async () => {
   app.use("/api/v1", userRoutes);
   app.use("/api/v1", categoryRoutes);
   app.use("/api/v1", socialActionRoutes);
+  app.use("/api/v1", memberRoutes);
 
   const port = process.env.PORT || 8089;
 
