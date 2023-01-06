@@ -6,7 +6,7 @@ import { MongoClient } from "../../../database/mongo";
 import { Member } from "../../../models/member";
 import { MongoMember } from "../../mongo-protocols";
 
-export class MongoMemberActionRepository
+export class MongoCreateMemberRepository
   implements ICreateMemberRepository
 {
   async createMember(params: ICreateMemberParams): Promise<Member> {
