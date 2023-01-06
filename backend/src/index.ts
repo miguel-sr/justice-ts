@@ -9,6 +9,7 @@ import categoryRoutes from "./routes/category.routes";
 import socialActionRoutes from "./routes/social-action.routes";
 import memberRoutes from "./routes/member.routes";
 import tipRoutes from "./routes/tip.routes";
+import videoRoutes from "./routes/video.routes";
 
 const main = async () => {
   config();
@@ -39,6 +40,7 @@ const main = async () => {
   app.use("/api/v1", socialActionRoutes);
   app.use("/api/v1", memberRoutes);
   app.use("/api/v1", tipRoutes);
+  app.use("/api/v1", videoRoutes);
 
   const port = process.env.PORT || 8089;
 
