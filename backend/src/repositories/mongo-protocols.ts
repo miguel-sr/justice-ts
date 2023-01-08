@@ -1,5 +1,6 @@
 import { Category } from "../models/category";
 import { Member } from "../models/member";
+import { Part } from "../models/part";
 import { SocialAction } from "../models/social-action";
 import { Sponsor } from "../models/sponsor";
 import { Tip } from "../models/tip";
@@ -13,3 +14,4 @@ export type MongoMember = Omit<Member, "id">;
 export type MongoTip = Omit<Tip, "id">;
 export type MongoVideo = Omit<Video, "id">;
 export type MongoSponsor = Omit<Sponsor, "id">;
+export type MongoPart = Omit<Part, "id">;
