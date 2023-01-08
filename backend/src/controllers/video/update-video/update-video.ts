@@ -17,7 +17,7 @@ export class UpdateVideoController implements IController {
       }
 
       if (!body) {
-        return badRequest("Body missing filds.");
+        return badRequest("Body missing fields.");
       }
 
       const allowedFieldsToUpdate: (keyof IUpdateVideoParams)[] = [

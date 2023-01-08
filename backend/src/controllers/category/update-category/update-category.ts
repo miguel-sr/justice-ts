@@ -19,7 +19,7 @@ export class UpdateCategoryController implements IController {
       }
 
       if (!body) {
-        return badRequest("Body missing filds.");
+        return badRequest("Body missing fields.");
       }
 
       const allowedFieldsToUpdate: (keyof IUpdateCategoryParams)[] = ["name"];

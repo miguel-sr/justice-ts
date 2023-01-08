@@ -12,7 +12,7 @@ export class LoginUserController implements IController {
       const body = httpRequest?.body;
 
       if (!body) {
-        return badRequest("Body missing filds.");
+        return badRequest("Body missing fields.");
       }
 
       const user = await this.loginUserRepository.loginUser(body);
