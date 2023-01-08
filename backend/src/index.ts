@@ -4,11 +4,12 @@ import cors from "cors";
 import { config } from "dotenv";
 import { MongoClient } from "./database/mongo";
 import authRoutes from "./routes/auth.routes";
-import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
-import socialActionRoutes from "./routes/social-action.routes";
 import memberRoutes from "./routes/member.routes";
+import socialActionRoutes from "./routes/social-action.routes";
+import sponsorRoutes from "./routes/sponsor.routes";
 import tipRoutes from "./routes/tip.routes";
+import userRoutes from "./routes/user.routes";
 import videoRoutes from "./routes/video.routes";
 
 const main = async () => {
@@ -35,11 +36,12 @@ const main = async () => {
   });
 
   app.use("/api/v1", authRoutes);
-  app.use("/api/v1", userRoutes);
   app.use("/api/v1", categoryRoutes);
-  app.use("/api/v1", socialActionRoutes);
   app.use("/api/v1", memberRoutes);
+  app.use("/api/v1", socialActionRoutes);
+  app.use("/api/v1", sponsorRoutes);
   app.use("/api/v1", tipRoutes);
+  app.use("/api/v1", userRoutes);
   app.use("/api/v1", videoRoutes);
 
   const port = process.env.PORT || 8089;
