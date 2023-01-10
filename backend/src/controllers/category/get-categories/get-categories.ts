@@ -12,8 +12,8 @@ export class GetCategoriesController implements IController {
     httpRequest: IHttpRequest<unknown>
   ): Promise<IHttpResponse<Category[] | Category | string>> {
     try {
-      const id = httpRequest?.params?.id;
-      const categories = await this.getCategoriesRepository.getCategories(id);
+      const slug = httpRequest?.params?.slug;
+      const categories = await this.getCategoriesRepository.getCategories(slug);
       return ok<Category[] | Category>(categories);
     } catch (error) {
       return serverError();

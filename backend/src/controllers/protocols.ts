@@ -5,7 +5,7 @@ export interface IHttpResponse<T> {
 
 // ==> B: Body
 export interface IHttpRequest<B> {
-  params?: { id?: string };
+  params?: { id?: string; slug?: string };
   headers?: any;
   body?: B;
 }

@@ -2,6 +2,7 @@ import { Category } from "../../../models/category";
 
 export interface ICreateCategoryParams {
   name: string;
+  slug: string;
   createdAt: Date;
 }
 

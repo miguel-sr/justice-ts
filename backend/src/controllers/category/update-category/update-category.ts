@@ -22,7 +22,10 @@ export class UpdateCategoryController implements IController {
         return badRequest("Body missing fields.");
       }
 
-      const allowedFieldsToUpdate: (keyof IUpdateCategoryParams)[] = ["name"];
+      const allowedFieldsToUpdate: (keyof IUpdateCategoryParams)[] = [
+        "name",
+        "slug",
+      ];
       const someFieldIsNotAllowedToUpdate = Object.keys(body).some(
         (key) =>
           !allowedFieldsToUpdate.includes(key as keyof IUpdateCategoryParams)

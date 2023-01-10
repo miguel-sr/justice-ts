@@ -11,7 +11,7 @@ import { DeleteCategoryController } from "../controllers/category/delete-categor
 
 const routes = Router();
 
-routes.get("/categories/:id?", async (req, res) => {
+routes.get("/categories/:slug?", async (req, res) => {
   const mongoGetCategoriesRepository = new MongoGetCategoriesRepository();
   const getCategoriesController = new GetCategoriesController(
     mongoGetCategoriesRepository

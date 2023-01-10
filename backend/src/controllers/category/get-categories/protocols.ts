@@ -1,5 +1,5 @@
 import { Category } from "../../../models/category";
 
 export interface IGetCategoriesRepository {
-  getCategories(id?: string): Promise<Category[] | Category>;
+  getCategories(slug?: string): Promise<Category[] | Category>;
 }

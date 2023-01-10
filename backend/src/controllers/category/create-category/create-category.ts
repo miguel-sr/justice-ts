@@ -12,7 +12,7 @@ export class CreateCategoryController implements IController {
     httpRequest: IHttpRequest<ICreateCategoryParams>
   ): Promise<IHttpResponse<Category | string>> {
     try {
-      const requiredFields = ["name"];
+      const requiredFields = ["name", "slug"];
 
       for (const field of requiredFields) {
         if (
