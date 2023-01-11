@@ -3,7 +3,6 @@ import morgan from "morgan";
 import cors from "cors";
 import { config } from "dotenv";
 import { MongoClient } from "./database/mongo";
-import authRoutes from "./routes/auth.routes";
 import categoryRoutes from "./routes/category.routes";
 import memberRoutes from "./routes/member.routes";
 import orderRoutes from "./routes/order.routes";
@@ -37,10 +36,9 @@ const main = async () => {
     });
   });
 
-  app.use("/api/v1", authRoutes);
   app.use("/api/v1", categoryRoutes);
   app.use("/api/v1", memberRoutes);
-  app.get("/api/v1", orderRoutes);
+  app.use("/api/v1", orderRoutes);
   app.use("/api/v1", partRoutes);
   app.use("/api/v1", socialActionRoutes);
   app.use("/api/v1", sponsorRoutes);
