@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/part/create-part/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Part } from "../../../models/part";
-import { MongoPart } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoCreatePartRepository implements ICreatePartRepository {
   async createPart(params: ICreatePartParams): Promise<Part> {
@@ -13,7 +13,7 @@ export class MongoCreatePartRepository implements ICreatePartRepository {
       .insertOne(params);
 
     const part = await MongoClient.db
-      .collection<MongoPart>("parts")
+      .collection<MongoType<Part>>("parts")
       .findOne({ _id: insertedId });
 
     if (!part) {

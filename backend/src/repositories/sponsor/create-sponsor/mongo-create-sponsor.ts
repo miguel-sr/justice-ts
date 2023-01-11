@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/sponsor/create-sponsor/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Sponsor } from "../../../models/sponsor";
-import { MongoSponsor } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoCreateSponsorRepository implements ICreateSponsorRepository {
   async createSponsor(params: ICreateSponsorParams): Promise<Sponsor> {
@@ -13,7 +13,7 @@ export class MongoCreateSponsorRepository implements ICreateSponsorRepository {
       .insertOne(params);
 
     const sponsor = await MongoClient.db
-      .collection<MongoSponsor>("sponsors")
+      .collection<MongoType<Sponsor>>("sponsors")
       .findOne({ _id: insertedId });
 
     if (!sponsor) {

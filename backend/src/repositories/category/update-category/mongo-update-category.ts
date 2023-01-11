@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/category/update-category/protocols";
 import { ObjectId } from "mongodb";
 import { MongoClient } from "../../../database/mongo";
-import { MongoCategory } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 import { Category } from "../../../models/category";
 
 export class MongoUpdateCategoryRepository
@@ -24,7 +24,7 @@ export class MongoUpdateCategoryRepository
     );
 
     const category = await MongoClient.db
-      .collection<MongoCategory>("categories")
+      .collection<MongoType<Category>>("categories")
       .findOne({ _id: new ObjectId(id) });
 
     if (!category) {

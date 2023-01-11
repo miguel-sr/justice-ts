@@ -3,7 +3,7 @@ import {
   ICreateTipRepository,
 } from "../../../controllers/tip/create-tip/protocols";
 import { MongoClient } from "../../../database/mongo";
-import { MongoTip } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 import { Tip } from "../../../models/tip";
 
 export class MongoCreateTipRepository implements ICreateTipRepository {
@@ -13,7 +13,7 @@ export class MongoCreateTipRepository implements ICreateTipRepository {
       .insertOne(params);
 
     const tip = await MongoClient.db
-      .collection<MongoTip>("tips")
+      .collection<MongoType<Tip>>("tips")
       .findOne({ _id: insertedId });
 
     if (!tip) {

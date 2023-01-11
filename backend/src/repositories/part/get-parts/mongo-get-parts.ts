@@ -2,13 +2,13 @@ import { ObjectId } from "mongodb";
 import { IGetPartsRepository } from "../../../controllers/part/get-parts/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Part } from "../../../models/part";
-import { MongoPart } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoGetPartsRepository implements IGetPartsRepository {
   async getParts(id?: string): Promise<Part[] | Part> {
     if (id) {
       const part = await MongoClient.db
-        .collection<MongoPart>("parts")
+        .collection<MongoType<Part>>("parts")
         .findOne({ _id: new ObjectId(id) });
 
       if (!part) {
@@ -18,7 +18,7 @@ export class MongoGetPartsRepository implements IGetPartsRepository {
       return MongoClient.map(part);
     } else {
       const parts = await MongoClient.db
-        .collection<MongoPart>("parts")
+        .collection<MongoType<Part>>("parts")
         .find({})
         .toArray();
 

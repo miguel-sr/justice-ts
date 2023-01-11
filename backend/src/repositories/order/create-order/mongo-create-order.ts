@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/order/create-order/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Order } from "../../../models/order";
-import { MongoOrder } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoCreateOrderRepository implements ICreateOrderRepository {
   async createOrder(params: ICreateOrderParams): Promise<Order> {
@@ -13,7 +13,7 @@ export class MongoCreateOrderRepository implements ICreateOrderRepository {
       .insertOne(params);
 
     const order = await MongoClient.db
-      .collection<MongoOrder>("orders")
+      .collection<MongoType<Order>>("orders")
       .findOne({ _id: insertedId });
 
     if (!order) {

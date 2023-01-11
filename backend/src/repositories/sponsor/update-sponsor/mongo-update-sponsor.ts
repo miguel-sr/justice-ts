@@ -5,7 +5,7 @@ import {
 } from "../../../controllers/sponsor/update-sponsor/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Sponsor } from "../../../models/sponsor";
-import { MongoSponsor } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoUpdateSponsorRepository implements IUpdateSponsorRepository {
   async updateSponsor(
@@ -22,7 +22,7 @@ export class MongoUpdateSponsorRepository implements IUpdateSponsorRepository {
     );
 
     const sponsor = await MongoClient.db
-      .collection<MongoSponsor>("sponsors")
+      .collection<MongoType<Sponsor>>("sponsors")
       .findOne({ _id: new ObjectId(id) });
 
     if (!sponsor) {

@@ -2,10 +2,10 @@ import {
   IUpdateTipParams,
   IUpdateTipRepository,
 } from "../../../controllers/tip/update-tip/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { MongoTip } from "../../mongo-protocols";
-import { Tip } from "../../../models/tip";
 import { ObjectId } from "mongodb";
+import { MongoClient } from "../../../database/mongo";
+import { MongoType } from "../../mongo-protocols";
+import { Tip } from "../../../models/tip";
 
 export class MongoUpdateTipRepository implements IUpdateTipRepository {
   async updateTip(id: string, params: IUpdateTipParams): Promise<Tip> {
@@ -19,7 +19,7 @@ export class MongoUpdateTipRepository implements IUpdateTipRepository {
     );
 
     const tip = await MongoClient.db
-      .collection<MongoTip>("tips")
+      .collection<MongoType<Tip>>("tips")
       .findOne({ _id: new ObjectId(id) });
 
     if (!tip) {

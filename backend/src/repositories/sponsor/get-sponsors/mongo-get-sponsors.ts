@@ -2,13 +2,13 @@ import { ObjectId } from "mongodb";
 import { IGetSponsorsRepository } from "../../../controllers/sponsor/get-sponsors/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Sponsor } from "../../../models/sponsor";
-import { MongoSponsor } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoGetSponsorsRepository implements IGetSponsorsRepository {
   async getSponsors(id?: string): Promise<Sponsor[] | Sponsor> {
     if (id) {
       const sponsor = await MongoClient.db
-        .collection<MongoSponsor>("sponsors")
+        .collection<MongoType<Sponsor>>("sponsors")
         .findOne({ _id: new ObjectId(id) });
 
       if (!sponsor) {
@@ -18,7 +18,7 @@ export class MongoGetSponsorsRepository implements IGetSponsorsRepository {
       return MongoClient.map(sponsor);
     } else {
       const sponsors = await MongoClient.db
-        .collection<MongoSponsor>("sponsors")
+        .collection<MongoType<Sponsor>>("sponsors")
         .find({})
         .toArray();
 

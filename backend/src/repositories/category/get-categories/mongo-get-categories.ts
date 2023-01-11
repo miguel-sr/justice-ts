@@ -1,13 +1,13 @@
 import { IGetCategoriesRepository } from "../../../controllers/category/get-categories/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Category } from "../../../models/category";
-import { MongoCategory } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoGetCategoriesRepository implements IGetCategoriesRepository {
   async getCategories(slug?: string): Promise<Category[] | Category> {
     if (slug) {
       const category = await MongoClient.db
-        .collection<MongoCategory>("categories")
+        .collection<MongoType<Category>>("categories")
         .findOne({ slug });
 
       if (!category) {
@@ -17,7 +17,7 @@ export class MongoGetCategoriesRepository implements IGetCategoriesRepository {
       return MongoClient.map(category);
     } else {
       const categories = await MongoClient.db
-        .collection<MongoCategory>("categories")
+        .collection<MongoType<Category>>("categories")
         .find({})
         .toArray();
 

@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/social-action/create-social-action/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { SocialAction } from "../../../models/social-action";
-import { MongoSocialAction } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoCreateSocialActionRepository
   implements ICreateSocialActionRepository
@@ -17,7 +17,7 @@ export class MongoCreateSocialActionRepository
       .insertOne(params);
 
     const category = await MongoClient.db
-      .collection<MongoSocialAction>("social-actions")
+      .collection<MongoType<SocialAction>>("social-actions")
       .findOne({ _id: insertedId });
 
     if (!category) {

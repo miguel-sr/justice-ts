@@ -5,7 +5,7 @@ import {
 } from "../../../controllers/part/update-part/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Part } from "../../../models/part";
-import { MongoPart } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoUpdatePartRepository implements IUpdatePartRepository {
   async updatePart(id: string, params: IUpdatePartParams): Promise<Part> {
@@ -19,7 +19,7 @@ export class MongoUpdatePartRepository implements IUpdatePartRepository {
     );
 
     const part = MongoClient.db
-      .collection<MongoPart>("parts")
+      .collection<MongoType<Part>>("parts")
       .findOne({ _id: new ObjectId(id) });
 
     if (!part) {

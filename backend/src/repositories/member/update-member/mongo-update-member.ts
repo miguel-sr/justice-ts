@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/member/update-member/protocols";
 import { ObjectId } from "mongodb";
 import { MongoClient } from "../../../database/mongo";
-import { MongoMember } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 import { Member } from "../../../models/member";
 
 export class MongoUpdateMemberRepository implements IUpdateMemberRepository {
@@ -19,7 +19,7 @@ export class MongoUpdateMemberRepository implements IUpdateMemberRepository {
     );
 
     const member = await MongoClient.db
-      .collection<MongoMember>("members")
+      .collection<MongoType<Member>>("members")
       .findOne({ _id: new ObjectId(id) });
 
     if (!member) {

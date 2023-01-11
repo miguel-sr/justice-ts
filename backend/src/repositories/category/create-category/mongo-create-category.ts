@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/category/create-category/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Category } from "../../../models/category";
-import { MongoCategory } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoCreateCategoryRepository
   implements ICreateCategoryRepository
@@ -15,7 +15,7 @@ export class MongoCreateCategoryRepository
       .insertOne(params);
 
     const category = await MongoClient.db
-      .collection<MongoCategory>("categories")
+      .collection<MongoType<Category>>("categories")
       .findOne({ _id: insertedId });
 
     if (!category) {

@@ -2,14 +2,14 @@ import { ObjectId } from "mongodb";
 import { IDeleteCategoryRepository } from "../../../controllers/category/delete-category/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Category } from "../../../models/category";
-import { MongoCategory } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoDeleteCategoryRepository
   implements IDeleteCategoryRepository
 {
   async deleteCategory(id: string): Promise<Category> {
     const category = await MongoClient.db
-      .collection<MongoCategory>("categories")
+      .collection<MongoType<Category>>("categories")
       .findOne({ _id: new ObjectId(id) });
 
     if (!category) {

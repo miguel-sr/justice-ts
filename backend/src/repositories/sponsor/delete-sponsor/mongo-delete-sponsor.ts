@@ -2,12 +2,12 @@ import { ObjectId } from "mongodb";
 import { IDeleteSponsorRepository } from "../../../controllers/sponsor/delete-sponsor/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Sponsor } from "../../../models/sponsor";
-import { MongoSponsor } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoDeleteSponsorRepository implements IDeleteSponsorRepository {
   async deleteSponsor(id: string): Promise<Sponsor> {
     const sponsor = await MongoClient.db
-      .collection<MongoSponsor>("sponsors")
+      .collection<MongoType<Sponsor>>("sponsors")
       .findOne({ _id: new ObjectId(id) });
 
     if (!sponsor) {

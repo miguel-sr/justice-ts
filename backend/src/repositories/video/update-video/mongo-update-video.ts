@@ -4,7 +4,7 @@ import {
 } from "../../../controllers/video/update-video/protocols";
 import { Video } from "../../../models/video";
 import { MongoClient } from "../../../database/mongo";
-import { MongoVideo } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 import { ObjectId } from "mongodb";
 
 export class MongoUpdateVideoRepository implements IUpdateVideoRepository {
@@ -19,7 +19,7 @@ export class MongoUpdateVideoRepository implements IUpdateVideoRepository {
     );
 
     const video = await MongoClient.db
-      .collection<MongoVideo>("videos")
+      .collection<MongoType<Video>>("videos")
       .findOne({ _id: new ObjectId(id) });
 
     if (!video) {

@@ -2,13 +2,13 @@ import { ObjectId } from "mongodb";
 import { IGetMembersRepository } from "../../../controllers/member/get-members/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Member } from "../../../models/member";
-import { MongoMember } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoGetMembersRepository implements IGetMembersRepository {
   async getMembers(id?: string): Promise<Member[] | Member> {
     if (id) {
       const member = await MongoClient.db
-        .collection<MongoMember>("members")
+        .collection<MongoType<Member>>("members")
         .findOne({ _id: new ObjectId(id) });
 
       if (!member) {
@@ -18,7 +18,7 @@ export class MongoGetMembersRepository implements IGetMembersRepository {
       return MongoClient.map(member);
     } else {
       const members = await MongoClient.db
-        .collection<MongoMember>("members")
+        .collection<MongoType<Member>>("members")
         .find({})
         .toArray();
 

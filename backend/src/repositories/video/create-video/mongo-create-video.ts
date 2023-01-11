@@ -3,7 +3,7 @@ import {
   ICreateVideoRepository,
 } from "../../../controllers/video/create-video/protocols";
 import { MongoClient } from "../../../database/mongo";
-import { MongoVideo } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 import { Video } from "../../../models/video";
 
 export class MongoCreateVideoRepository implements ICreateVideoRepository {
@@ -13,7 +13,7 @@ export class MongoCreateVideoRepository implements ICreateVideoRepository {
       .insertOne(params);
 
     const video = await MongoClient.db
-      .collection<MongoVideo>("videos")
+      .collection<MongoType<Video>>("videos")
       .findOne({ _id: insertedId });
 
     if (!video) {

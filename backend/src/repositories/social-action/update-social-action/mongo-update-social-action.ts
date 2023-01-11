@@ -5,7 +5,7 @@ import {
 import { ObjectId } from "mongodb";
 import { MongoClient } from "../../../database/mongo";
 import { SocialAction } from "../../../models/social-action";
-import { MongoSocialAction } from "../../mongo-protocols";
+import { MongoType } from "../../mongo-protocols";
 
 export class MongoUpdateSocialActionRepository
   implements IUpdateSocialActionRepository
@@ -24,7 +24,7 @@ export class MongoUpdateSocialActionRepository
     );
 
     const socialAction = await MongoClient.db
-      .collection<MongoSocialAction>("social-actions")
+      .collection<MongoType<SocialAction>>("social-actions")
       .findOne({ _id: new ObjectId(id) });
 
     if (!socialAction) {

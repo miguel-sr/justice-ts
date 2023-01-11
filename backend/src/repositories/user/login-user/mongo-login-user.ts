@@ -3,15 +3,15 @@ import {
   ILoginUserParams,
   ILoginUserRepository,
 } from "../../../controllers/user/login-user/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { User } from "../../../models/user";
 import jwtService from "../../../services/jwt.service";
-import { MongoUser } from "../../mongo-protocols";
+import { MongoClient } from "../../../database/mongo";
+import { MongoType } from "../../mongo-protocols";
+import { User } from "../../../models/user";
 
 export class MongoLoginUserRepository implements ILoginUserRepository {
   async loginUser(params: ILoginUserParams): Promise<User> {
     let user = await MongoClient.db
-      .collection<MongoUser>("users")
+      .collection<MongoType<User>>("users")
       .findOne({ email: params.email });
 
     if (!user) {
@@ -37,7 +37,7 @@ export class MongoLoginUserRepository implements ILoginUserRepository {
     );
 
     user = await MongoClient.db
-      .collection<MongoUser>("users")
+      .collection<MongoType<User>>("users")
       .findOne({ email: params.email });
 
     return MongoClient.map(user);
