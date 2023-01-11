@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import {
   ILoginUserParams,
   ILoginUserRepository,
-} from "../../../controllers/auth/login-user/protocols";
+} from "../../../controllers/user/login-user/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { User } from "../../../models/user";
 import jwtService from "../../../services/jwt.service";
