@@ -1,4 +1,4 @@
-import API from "@/services/api.service";
+import API from "@/services/server/api.service";
 import alertService from "./alert.service";
 
 export default {

@@ -1,9 +1,9 @@
-import API from "@/services/api.service";
+import API from "@/services/server/api.service";
 import alertService from "./alert.service";
 
 export default {
   async get(id?: string) {
-    const response = await API().get("/social-actions/" + id, {
+    const response = await API().get("/categories/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/social-actions", body, {
+      await API().post("/categories", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação criada com sucesso.");
+      alertService.success("Categoria criada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar ação.");
+      alertService.error("Erro ao criar categoria.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/social-actions/" + id, body, {
+      await API().patch("/categories/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação atualizada com sucesso.");
+      alertService.success("Categoria atualizada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar ação.");
+      alertService.error("Erro ao atualizar categoria.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/social-actions/" + id, {
+      await API().delete("/categories/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação deletada com sucesso.");
+      alertService.success("Categoria deletada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar ação.");
+      alertService.error("Erro ao deletar categoria.");
     }
   },
 };

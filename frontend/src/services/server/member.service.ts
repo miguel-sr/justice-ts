@@ -1,9 +1,9 @@
-import API from "@/services/api.service";
-import alertService from "./alert.service";
+import API from "@/services/server/api.service";
+import alertService from "../alert.service";
 
 export default {
   async get(id?: string) {
-    const response = await API().get("/categories/" + id, {
+    const response = await API().get("/members/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/categories", body, {
+      await API().post("/members", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria criada com sucesso.");
+      alertService.success("Membro criado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar categoria.");
+      alertService.error("Erro ao criar membro.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/categories/" + id, body, {
+      await API().patch("/members/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria atualizada com sucesso.");
+      alertService.success("Membro atualizado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar categoria.");
+      alertService.error("Erro ao atualizar membro.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/categories/" + id, {
+      await API().delete("/members/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria deletada com sucesso.");
+      alertService.success("Membro deletado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar categoria.");
+      alertService.error("Erro ao deletar membro.");
     }
   },
 };
