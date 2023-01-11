@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { LoginUserController } from "../controllers/auth/login-user/login-user";
 import auth from "../middlewares/auth";
-import { MongoLoginUserRepository } from "../repositories/auth/login-user/mongo-login-user";
 import getCache from "../services/cache.service";
 import jwtService from "../services/jwt.service";
+import { MongoLoginUserRepository } from "../repositories/user/login-user/mongo-login-user";
+import { LoginUserController } from "../controllers/user/login-user/login-user";
+
 const routes = Router();
 
 routes.post("/login", async (req, res) => {
