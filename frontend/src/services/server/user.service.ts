@@ -1,5 +1,5 @@
 import API from "@/services/server/api.service";
-import alertService from "./alert.service";
+import alertService from "../alert.service";
 
 export default {
   async login(body: JSON) {
