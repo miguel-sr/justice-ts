@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
@@ -15,7 +15,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
-  --blue: #034c8c;
+  --dark-blue: #034c8c;
+  --light-blue: #007bff;
   --light-gray: #f3f3f3;
 }
 
