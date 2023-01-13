@@ -26,7 +26,7 @@
   width: 50px;
   height: 6px;
   position: relative;
-  background: var(--blue);
+  background: var(--dark-blue);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
   transition: all 0.5s ease-in-out;
@@ -39,7 +39,7 @@
   left: 0;
   width: 50px;
   height: 6px;
-  background: var(--blue);
+  background: var(--dark-blue);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
   transition: all 0.5s ease-in-out;
@@ -53,7 +53,7 @@
   left: 0;
   width: 50px;
   height: 6px;
-  background: var(--blue);
+  background: var(--dark-blue);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
   transition: all 0.5s ease-in-out;

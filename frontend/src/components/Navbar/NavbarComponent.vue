@@ -59,14 +59,12 @@
 <style scoped>
 nav {
   z-index: 2;
-  background: rgba(255, 255, 255, 0.75);
+  background-color: #ffffff;
   font-size: 1.3rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
 }
 
 nav .nav-item a {
-  color: var(--blue);
+  color: var(--dark-blue);
   text-decoration: none;
   margin-right: 10px;
   position: relative;
@@ -79,7 +77,7 @@ nav .hover-effect a::after {
   height: 2px;
   width: 0%;
   transition: width 0.5s;
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
 }
 
 nav .hover-effect a:hover::after {
@@ -96,9 +94,7 @@ nav #logo img {
 }
 
 nav .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.75);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background-color: #ffffff;
   left: auto !important;
   right: 0;
   border-radius: 0;
@@ -107,6 +103,6 @@ nav .dropdown-menu {
 
 nav .dropdown-menu a:hover {
   background-color: transparent;
-  color: var(--light-yellow);
+  color: var(--light-blue);
 }
 </style>
