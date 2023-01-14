@@ -4,6 +4,7 @@
     <HeroComponent />
     <AboutComponent />
     <MembersComponent />
+    <SponsorsComponent />
     <FooterComponent />
   </div>
 </template>
