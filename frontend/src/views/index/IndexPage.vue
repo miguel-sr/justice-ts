@@ -3,6 +3,7 @@
     <NavbarComponent />
     <HeroComponent />
     <AboutComponent />
+    <MembersComponent />
     <FooterComponent />
   </div>
 </template>

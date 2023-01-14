@@ -1,6 +1,7 @@
 import NavbarComponent from "../../components/Navbar/NavbarComponent.vue";
 import HeroComponent from "../../components/IndexPage/HeroComponent.vue";
 import AboutComponent from "../../components/IndexPage/AboutComponent.vue";
+import MembersComponent from "../../components/IndexPage/Members/MembersComponent.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 
 export default {
@@ -9,6 +10,7 @@ export default {
     NavbarComponent,
     HeroComponent,
     AboutComponent,
+    MembersComponent,
     FooterComponent,
   },
 };
