@@ -2,7 +2,7 @@ import API from "@/services/server/api.service";
 import alertService from "../alert.service";
 
 export default {
-  async get(id?: string) {
+  async get(id = "") {
     const response = await API().get("/members/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
