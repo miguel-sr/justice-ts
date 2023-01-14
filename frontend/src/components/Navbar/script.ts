@@ -14,12 +14,11 @@ export default defineComponent({
       user: {} as ITokenParams,
     };
   },
-  mounted() {
-    this.user = jwtService.decode();
-  },
   methods: {
     isUser() {
       if (localStorage.getItem("userToken")) {
+        this.user = jwtService.decode();
+
         if (!this.user) {
           return false;
         }
