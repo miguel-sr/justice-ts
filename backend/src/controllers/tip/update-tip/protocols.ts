@@ -5,6 +5,7 @@ export interface IUpdateTipParams {
   role?: string;
   text?: string;
   image?: string;
+  updatedAt: Date;
 }
 
 export interface IUpdateTipRepository {

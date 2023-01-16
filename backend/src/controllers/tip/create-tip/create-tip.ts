@@ -19,6 +19,9 @@ export class CreateTipController implements IController {
       }
 
       if (httpRequest.body) {
+        httpRequest.body.createdAt = new Date();
+        httpRequest.body.updatedAt = new Date();
+
         const tip = await this.createTipRepository.createTip(httpRequest.body);
 
         return created<Tip>(tip);

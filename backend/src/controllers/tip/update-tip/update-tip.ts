@@ -34,6 +34,8 @@ export class UpdateTipController implements IController {
         return badRequest("Some received field is not allowed.");
       }
 
+      body.updatedAt = new Date();
+
       const member = await this.updateTipRepository.updateTip(id, body);
       return ok<Tip>(member);
     } catch (error) {
