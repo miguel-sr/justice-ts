@@ -18,7 +18,7 @@ h1 {
   font-size: 3rem;
   padding-bottom: 2rem;
   text-align: center;
-  color: var(--blue);
+  color: var(--dark-blue);
 }
 
 section {
