@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-lg w-100 position-fixed">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <routerlink to="/" id="logo">
+        <router-link to="/" id="logo">
           <img src="../../assets/SVG/logo-justice-azul.svg" alt="" />
-        </routerlink>
+        </router-link>
       </a>
       <TogglerNavbar />
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
