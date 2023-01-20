@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { api } from "@/lib/axios";
+import { Alert } from "@/lib/alert";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/sponsors/" + id, {
+    const response = await api.get("/parts/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/sponsors", body, {
+      await api.post("/parts", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Patrocinador criado com sucesso.");
+      Alert.success("Peça criada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar patrocinador.");
+      Alert.error("Erro ao criar peça.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/sponsors/" + id, body, {
+      await api.patch("/parts/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Patrocinador atualizado com sucesso.");
+      Alert.success("Peça atualizada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar patrocinador.");
+      Alert.error("Erro ao atualizar peça.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/sponsors/" + id, {
+      await api.delete("/parts/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Patrocinador deletado com sucesso.");
+      Alert.success("Peça deletada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar patrocinador.");
+      Alert.error("Erro ao deletar peça.");
     }
   },
 };

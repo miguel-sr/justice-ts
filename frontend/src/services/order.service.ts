@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { Alert } from "@/lib/alert";
+import { api } from "@/lib/axios";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/orders/" + id, {
+    const response = await api.get("/orders/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,26 +12,26 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/orders", body, {
+      await api.post("/orders", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Pedido criado com sucesso.");
+      Alert.success("Pedido criado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar pedido.");
+      Alert.error("Erro ao criar pedido.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/orders/" + id, {
+      await api.delete("/orders/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Pedido deletado com sucesso.");
+      Alert.success("Pedido deletado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar pedido.");
+      Alert.error("Erro ao deletar pedido.");
     }
   },
 };

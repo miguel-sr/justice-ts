@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { api } from "@/lib/axios";
+import { Alert } from "@/lib/alert";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/members/" + id, {
+    const response = await api.get("/sponsors/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/members", body, {
+      await api.post("/sponsors", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Membro criado com sucesso.");
+      Alert.success("Patrocinador criado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar membro.");
+      Alert.error("Erro ao criar patrocinador.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/members/" + id, body, {
+      await api.patch("/sponsors/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Membro atualizado com sucesso.");
+      Alert.success("Patrocinador atualizado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar membro.");
+      Alert.error("Erro ao atualizar patrocinador.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/members/" + id, {
+      await api.delete("/sponsors/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Membro deletado com sucesso.");
+      Alert.success("Patrocinador deletado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar membro.");
+      Alert.error("Erro ao deletar patrocinador.");
     }
   },
 };

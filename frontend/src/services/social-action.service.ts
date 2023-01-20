@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { api } from "@/lib/axios";
+import { Alert } from "@/lib/alert";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/categories/" + id, {
+    const response = await api.get("/social-actions/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/categories", body, {
+      await api.post("/social-actions", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria criada com sucesso.");
+      Alert.success("Ação criada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar categoria.");
+      Alert.error("Erro ao criar ação.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/categories/" + id, body, {
+      await api.patch("/social-actions/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria atualizada com sucesso.");
+      Alert.success("Ação atualizada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar categoria.");
+      Alert.error("Erro ao atualizar ação.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/categories/" + id, {
+      await api.delete("/social-actions/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Categoria deletada com sucesso.");
+      Alert.success("Ação deletada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar categoria.");
+      Alert.error("Erro ao deletar ação.");
     }
   },
 };

@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { Alert } from "@/lib/alert";
+import { api } from "@/lib/axios";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/parts/" + id, {
+    const response = await api.get("/members/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/parts", body, {
+      await api.post("/members", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Peça criada com sucesso.");
+      Alert.success("Membro criado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar peça.");
+      Alert.error("Erro ao criar membro.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/parts/" + id, body, {
+      await api.patch("/members/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Peça atualizada com sucesso.");
+      Alert.success("Membro atualizado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar peça.");
+      Alert.error("Erro ao atualizar membro.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/parts/" + id, {
+      await api.delete("/members/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Peça deletada com sucesso.");
+      Alert.success("Membro deletado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar peça.");
+      Alert.error("Erro ao deletar membro.");
     }
   },
 };

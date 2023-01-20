@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { api } from "@/lib/axios";
+import { Alert } from "@/lib/alert";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/social-actions/" + id, {
+    const response = await api.get("/videos/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/social-actions", body, {
+      await api.post("/videos", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação criada com sucesso.");
+      Alert.success("Vídeo criado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar ação.");
+      Alert.error("Erro ao criar vídeo.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/social-actions/" + id, body, {
+      await api.patch("/videos/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação atualizada com sucesso.");
+      Alert.success("Vídeo atualizado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar ação.");
+      Alert.error("Erro ao atualizar vídeo.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/social-actions/" + id, {
+      await api.delete("/videos/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Ação deletada com sucesso.");
+      Alert.success("Vídeo deletado com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar ação.");
+      Alert.error("Erro ao deletar vídeo.");
     }
   },
 };

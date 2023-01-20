@@ -1,9 +1,9 @@
-import API from "@/services/server/api.service";
-import alertService from "../alert.service";
+import { Alert } from "@/lib/alert";
+import { api } from "@/lib/axios";
 
 export default {
   async get(id = "") {
-    const response = await API().get("/tips/" + id, {
+    const response = await api.get("/tips/" + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -12,38 +12,38 @@ export default {
   },
   async post(body: JSON) {
     try {
-      await API().post("/tips", body, {
+      await api.post("/tips", body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Dica criada com sucesso.");
+      Alert.success("Dica criada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao criar dica.");
+      Alert.error("Erro ao criar dica.");
     }
   },
   async update(id: string, body: JSON) {
     try {
-      await API().patch("/tips/" + id, body, {
+      await api.patch("/tips/" + id, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Dica atualizada com sucesso.");
+      Alert.success("Dica atualizada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao atualizar dica.");
+      Alert.error("Erro ao atualizar dica.");
     }
   },
   async delete(id: string) {
     try {
-      await API().delete("/tips/" + id, {
+      await api.delete("/tips/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      alertService.success("Dica deletada com sucesso.");
+      Alert.success("Dica deletada com sucesso.");
     } catch (err) {
-      alertService.error("Erro ao deletar dica.");
+      Alert.error("Erro ao deletar dica.");
     }
   },
 };

@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export default {
+export const Alert = {
   success(text: string) {
     Swal.fire({
       icon: "success",
