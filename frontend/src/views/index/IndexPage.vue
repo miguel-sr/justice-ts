@@ -1,10 +1,11 @@
 <template>
   <div>
+    <LoadingComponent v-if="!membersIsLoaded || !sponsorsIsloaded" />
     <NavbarComponent />
     <HeroComponent />
     <AboutComponent />
-    <MembersComponent />
-    <SponsorsComponent />
+    <MembersComponent @membersLoaded="membersLoaded" />
+    <SponsorsComponent @sponsorsLoaded="sponsorsLoaded" />
     <FooterComponent />
   </div>
 </template>
