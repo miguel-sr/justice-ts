@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LoadingComponent v-if="!videosIsLoaded" />
     <NavbarComponent />
     <section>
       <h1 class="text-center">Vídeos</h1>
@@ -9,13 +10,13 @@
       >
         <div class="card" v-for="item in videos" :key="item.id">
           <iframe
-            :src="item.video"
-            :title="item.title"
+            :srcdoc="`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/${item.video}?autoplay=1><img src=https://img.youtube.com/vi/${item.video}/hqdefault.jpg alt='${item.title}'><span>▶</span></a>`"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write;
           encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">{{ item.description }}</p>
