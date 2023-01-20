@@ -1,6 +1,6 @@
 import { defineComponent } from "vue";
-import jwtService, { ITokenParams } from "../../services/jwt.service";
-import UserService from "../../services/server/user.service";
+import jwtService, { ITokenParams } from "../../lib/jwt";
+import UserService from "../../services/user.service";
 import TogglerNavbar from "../Toggler/TogglerNavbar.vue";
 
 export default defineComponent({

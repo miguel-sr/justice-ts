@@ -1,6 +1,6 @@
 import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
-import jwtService from "@/services/jwt.service";
-import alertService from "@/services/alert.service";
+import jwtService from "@/lib/jwt";
+import { Alert } from "@/lib/alert";
 
 export default (
   to: RouteLocationNormalized,
@@ -17,7 +17,7 @@ export default (
       if (user.credentials === "admin") {
         next();
       } else {
-        alertService.error("Permissões insuficientes.");
+        Alert.error("Permissões insuficientes.");
         next({
           path: "/",
         });

@@ -2,8 +2,8 @@ import { defineComponent } from "vue";
 import LoadingComponent from "../../components/Loading/LoadingComponent.vue";
 import NavbarComponent from "../../components/Navbar/NavbarComponent.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
-import VideoService from "../../services/server/video.service";
-import alertService from "@/services/alert.service";
+import VideoService from "../../services/video.service";
+import { Alert } from "@/lib/alert";
 
 export default defineComponent({
   name: "VideosPage",
@@ -26,7 +26,7 @@ export default defineComponent({
       try {
         this.videos = await VideoService.get();
       } catch (error) {
-        alertService.error("Erro ao carregar patrocinadores.");
+        Alert.error("Erro ao carregar patrocinadores.");
       } finally {
         this.videosIsLoaded = true;
       }

@@ -1,6 +1,6 @@
 import { defineComponent } from "vue";
-import SponsorService from "@/services/server/sponsor.service";
-import alertService from "@/services/alert.service";
+import { Alert } from "@/lib/alert";
+import SponsorService from "@/services/sponsor.service";
 
 export default defineComponent({
   name: "SponsorsComponent",
@@ -17,7 +17,7 @@ export default defineComponent({
       try {
         this.sponsors = await SponsorService.get();
       } catch (error) {
-        alertService.error("Erro ao carregar patrocinadores.");
+        Alert.error("Erro ao carregar patrocinadores.");
       } finally {
         this.$emit("sponsorsLoaded");
       }
