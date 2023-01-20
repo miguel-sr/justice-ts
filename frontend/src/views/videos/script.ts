@@ -15,7 +15,7 @@ export default defineComponent({
   data() {
     return {
       videos: null,
-      videosIsLoaded: false,
+      dataIsLoaded: false,
     };
   },
   mounted() {
@@ -28,7 +28,7 @@ export default defineComponent({
       } catch (error) {
         Alert.error("Erro ao carregar patrocinadores.");
       } finally {
-        this.videosIsLoaded = true;
+        this.dataIsLoaded = true;
       }
     },
   },

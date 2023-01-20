@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LoadingComponent v-if="!videosIsLoaded" />
+    <LoadingComponent v-if="!dataIsLoaded" />
     <NavbarComponent />
     <section>
       <h1 class="text-center">Vídeos</h1>
