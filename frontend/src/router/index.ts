@@ -11,6 +11,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "VideoPage",
     component: () => import("../views/videos/VideosPage.vue"),
   },
+  {
+    path: "/realizacoes",
+    name: "SocialActionsPage",
+    component: () => import("../views/social-actions/SocialActionsPage.vue"),
+  },
+  {
+    path: "/dicas",
+    name: "TipsPage",
+    component: () => import("../views/tips/TipsPage.vue"),
+  },
 ];
 
 const router = createRouter({
