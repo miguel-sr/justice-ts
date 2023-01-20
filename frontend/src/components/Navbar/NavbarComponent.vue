@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <routerlink to="/" id="logo">
-          <img src="../../assets/logo-justice-azul.png" alt="" />
+          <img src="../../assets/SVG/logo-justice-azul.svg" alt="" />
         </routerlink>
       </a>
       <TogglerNavbar />
@@ -90,7 +90,8 @@ nav #logo {
 }
 
 nav #logo img {
-  width: 120px;
+  width: 80px;
+  margin: 10px;
 }
 
 nav .dropdown-menu {
