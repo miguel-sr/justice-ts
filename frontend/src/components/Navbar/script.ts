@@ -1,6 +1,5 @@
 import { defineComponent } from "vue";
 import jwtService, { ITokenParams } from "../../lib/jwt";
-import UserService from "../../services/user.service";
 import TogglerNavbar from "../Toggler/TogglerNavbar.vue";
 
 export default defineComponent({
@@ -35,10 +34,8 @@ export default defineComponent({
       }
     },
     logout() {
-      UserService.logout().then(() => {
-        localStorage.removeItem("userToken");
-        this.$forceUpdate();
-      });
+      localStorage.removeItem("userToken");
+      this.$forceUpdate();
     },
   },
 });

@@ -4,8 +4,6 @@ export interface IUserPayload {
   id: string;
   name: string;
   credentials: string;
-  iat: number;
-  exp: number;
 }
 
 class JwtService {
@@ -14,10 +12,7 @@ class JwtService {
     try {
       return jwt.sign(
         { id: id, name: name, credentials: credentials },
-        process.env.JWT_SECRET as string,
-        {
-          expiresIn: process.env.JWT_TOKEN_LIFE,
-        }
+        process.env.JWT_SECRET as string
       ) as string;
     } catch (error) {
       throw new Error("Error: " + error);

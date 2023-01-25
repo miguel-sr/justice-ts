@@ -19,23 +19,6 @@ export default {
       Alert.error("Erro ao realizar login.");
     }
   },
-  async logout() {
-    try {
-      await api.post(
-        "/logout",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-      Alert.success("Logout realizado com sucesso.");
-    } catch (error) {
-      console.log(error);
-      Alert.error("Erro ao realizar logout.");
-    }
-  },
   async verifyToken() {
     try {
       await api.get("/token", {

@@ -1,7 +1,5 @@
 import { Router } from "express";
 import auth from "../middlewares/auth";
-import getCache from "../services/cache.service";
-import jwtService from "../services/jwt.service";
 import { CreateUserController } from "../controllers/user/create-user/create-user";
 import { DeleteUserController } from "../controllers/user/delete-user/delete-user";
 import { GetUsersController } from "../controllers/user/get-users/get-users";
@@ -67,27 +65,6 @@ routes.post("/login", async (req, res) => {
     body: req.body,
   });
   res.status(statusCode).send(body);
-});
-
-routes.post("/logout", auth, async (req, res) => {
-  const redisClient = await getCache();
-
-  if (!req.headers.authorization) {
-    return res.status(400).json("Missing authorization header.");
-  }
-
-  const token = req.headers.authorization.replace("Bearer ", "");
-  const decoded = jwtService.verify(token);
-
-  const token_key = `bl_${token}`;
-  redisClient.set(token_key, token);
-  redisClient.expireAt(token_key, decoded.exp);
-
-  return res.status(200).send("Token invalidated.");
-});
-
-routes.get("/token", auth, async (req, res) => {
-  return res.status(200).send("Token validated.");
 });
 
 export default routes;
