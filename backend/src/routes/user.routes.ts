@@ -67,4 +67,8 @@ routes.post("/login", async (req, res) => {
   res.status(statusCode).send(body);
 });
 
+routes.get("/token", auth, async (req, res) => {
+  return res.status(200).send("Token validated.");
+});
+
 export default routes;
