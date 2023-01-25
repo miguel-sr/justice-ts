@@ -15,7 +15,7 @@ export class MongoDeleteTipRepository implements IDeleteTipRepository {
     }
 
     const { deletedCount } = await MongoClient.db
-      .collection("members")
+      .collection("tips")
       .deleteOne({ _id: new ObjectId(id) });
 
     if (!deletedCount) {
