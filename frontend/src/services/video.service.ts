@@ -2,6 +2,7 @@ import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
 export interface IVideoParams {
+  id: string;
   title: string;
   description: string;
   video: string;

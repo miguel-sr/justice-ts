@@ -5,12 +5,12 @@ import { required } from "@vuelidate/validators";
 
 import NavbarComponent from "../../../components/Navbar/NavbarComponent.vue";
 import FooterComponent from "../../../components/FooterComponent.vue";
-import VideoService, { IVideoParams } from "@/services/video.service";
+import TipService, { ITipParams } from "@/services/tip.service";
 
 import { Alert } from "@/lib/alert";
 
 export default defineComponent({
-  name: "AdminUpdateVideo",
+  name: "AdminManageTips",
   components: {
     NavbarComponent,
     FooterComponent,
@@ -20,36 +20,45 @@ export default defineComponent({
   },
   data() {
     return {
-      form: <IVideoParams>{
-        title: "",
-        description: "",
-        video: "",
+      form: <ITipParams>{
+        name: "",
+        role: "",
+        text: "",
+        image: "",
       },
-      id: "",
+      Tips: null,
       isSubmitted: false,
     };
   },
   validations() {
     return {
       form: {
-        title: { required },
-        description: { required },
-        video: { required },
+        name: { required },
+        role: { required },
+        text: { required },
+        image: { required },
       },
     };
   },
   mounted() {
-    VideoService.get(
-      window.location.pathname.replaceAll("/admin/videos/", "")
-    ).then((video: IVideoParams) => {
-      this.id = video.id;
-      this.form.title = video.title;
-      this.form.description = video.description;
-      this.form.video = video.video;
-    });
+    this.getTips();
   },
   methods: {
-    async updateVideo(id: string) {
+    updateTip(id: string) {
+      this.$router.push(`/admin/tips/${id}`);
+    },
+    async getTips() {
+      this.Tips = await TipService.get();
+    },
+    async deleteTip(id: string) {
+      try {
+        await TipService.delete(id);
+        this.getTips();
+      } catch (err) {
+        Alert.error("Alguma coisa deu errado aqui!");
+      }
+    },
+    async postTip() {
       try {
         this.isSubmitted = true;
         this.v$.$touch();
@@ -58,8 +67,14 @@ export default defineComponent({
           Alert.error("Você precisa incluir todos os campos obrigatórios!");
           return;
         }
-        await VideoService.update(id, this.form);
-        this.$router.push("/admin/videos");
+
+        await TipService.post(this.form);
+        this.getTips();
+        this.isSubmitted = false;
+        this.form.name = "";
+        this.form.role = "";
+        this.form.text = "";
+        this.form.image = "";
       } catch (err) {
         Alert.error("Alguma coisa deu errado aqui!");
       }

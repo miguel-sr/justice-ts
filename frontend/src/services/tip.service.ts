@@ -1,6 +1,14 @@
 import { Alert } from "@/lib/alert";
 import { api } from "@/lib/axios";
 
+export interface ITipParams {
+  id: string;
+  name: string;
+  role: string;
+  text: string;
+  image: string;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/tips/" + id, {
@@ -10,7 +18,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: ITipParams) {
     try {
       await api.post("/tips", body, {
         headers: {
@@ -22,7 +30,7 @@ export default {
       Alert.error("Erro ao criar dica.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: ITipParams) {
     try {
       await api.patch("/tips/" + id, body, {
         headers: {

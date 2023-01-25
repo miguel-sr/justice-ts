@@ -28,4 +28,20 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/tips",
+    name: "AdminManageTips",
+    component: () => import("../views/admin/Tips/manageTips.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/tips/:id",
+    name: "AdminUpdateTip",
+    component: () => import("../views/admin/Tips/updateTip.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];
