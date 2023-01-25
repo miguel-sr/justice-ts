@@ -1,6 +1,12 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
+export interface IVideoParams {
+  title: string;
+  description: string;
+  video: string;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/videos/" + id, {
@@ -10,7 +16,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: IVideoParams) {
     try {
       await api.post("/videos", body, {
         headers: {
@@ -22,7 +28,7 @@ export default {
       Alert.error("Erro ao criar vídeo.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: IVideoParams) {
     try {
       await api.patch("/videos/" + id, body, {
         headers: {
