@@ -1,8 +1,13 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
+interface ILoginParams {
+  email: string;
+  password: string;
+}
+
 export default {
-  async login(body: JSON) {
+  async login(body: ILoginParams) {
     try {
       const response = await api.post("/login", body);
       const { token } = response.data;
@@ -16,14 +21,32 @@ export default {
   },
   async logout() {
     try {
-      await api.post("/logout", {
+      await api.post(
+        "/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      Alert.success("Logout realizado com sucesso.");
+    } catch (error) {
+      console.log(error);
+      Alert.error("Erro ao realizar logout.");
+    }
+  },
+  async verifyToken() {
+    try {
+      await api.get("/token", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
-      Alert.success("Logout realizado com sucesso.");
+      return true;
     } catch (err) {
-      Alert.error("Erro ao realizar logout.");
+      Alert.error("Token inválido.");
+      return false;
     }
   },
 };

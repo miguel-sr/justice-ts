@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import adminRoutes from "./admin.routes";
+import auth from "@/middlewares/auth";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,11 +23,14 @@ const routes: Array<RouteRecordRaw> = [
     name: "TipsPage",
     component: () => import("../views/tips/TipsPage.vue"),
   },
+  ...adminRoutes,
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach(auth);
 
 export default router;

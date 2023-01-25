@@ -37,7 +37,7 @@
             </router-link>
             <ul class="dropdown-menu text-center mt-0">
               <router-link class="dropdown-item disabled" to="/">
-                {{ username }}
+                {{ user.name }}
               </router-link>
               <div class="dropdown-divider bg-light"></div>
               <router-link class="dropdown-item" v-if="isAdmin()" to="/admin">
@@ -96,6 +96,8 @@ nav #logo img {
 
 nav .dropdown-menu {
   background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   left: auto !important;
   right: 0;
   border-radius: 0;

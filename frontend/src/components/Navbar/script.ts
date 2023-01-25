@@ -10,7 +10,6 @@ export default defineComponent({
   },
   data() {
     return {
-      username: "",
       user: {} as ITokenParams,
     };
   },
@@ -37,6 +36,7 @@ export default defineComponent({
     },
     logout() {
       UserService.logout().then(() => {
+        localStorage.removeItem("userToken");
         this.$forceUpdate();
       });
     },
