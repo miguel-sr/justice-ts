@@ -44,4 +44,20 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/sponsors",
+    name: "AdminManageSponsors",
+    component: () => import("../views/admin/Sponsors/manageSponsors.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/sponsors/:id",
+    name: "AdminUpdateSponsors",
+    component: () => import("../views/admin/Sponsors/updateSponsor.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];

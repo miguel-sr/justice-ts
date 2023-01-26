@@ -1,6 +1,12 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
+export interface ISponsorParams {
+  name: string;
+  site: string;
+  logo: string;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/sponsors/" + id, {
@@ -10,7 +16,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: ISponsorParams) {
     try {
       await api.post("/sponsors", body, {
         headers: {
@@ -22,7 +28,7 @@ export default {
       Alert.error("Erro ao criar patrocinador.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: ISponsorParams) {
     try {
       await api.patch("/sponsors/" + id, body, {
         headers: {

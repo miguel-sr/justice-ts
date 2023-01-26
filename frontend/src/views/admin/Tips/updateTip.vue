@@ -21,7 +21,7 @@
               v-if="isSubmitted && v$.form.name.required"
               class="invalid-feedback"
             >
-              O campo título é obrigatório!
+              Este campo é obrigatório!
             </div>
           </label>
         </div>
@@ -41,7 +41,7 @@
               v-if="isSubmitted && v$.form.role.required"
               class="invalid-feedback"
             >
-              O campo cargo é obrigatório!
+              Este campo é obrigatório!
             </div>
           </label>
         </div>
@@ -60,7 +60,7 @@
               v-if="isSubmitted && v$.form.text.required"
               class="invalid-feedback"
             >
-              O campo texto é obrigatório!
+              Este campo é obrigatório!
             </div>
           </label>
         </div>
@@ -80,7 +80,7 @@
               v-if="isSubmitted && v$.form.image.required"
               class="invalid-feedback"
             >
-              O campo URL é obrigatório!
+              Este campo é obrigatório!
             </div>
           </label>
         </div>

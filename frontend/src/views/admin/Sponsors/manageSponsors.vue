@@ -2,9 +2,9 @@
   <div>
     <NavbarComponent />
     <section>
-      <h1 class="text-center">Nova dica</h1>
-      <!-- NOVA DICA - INÍCIO -->
-      <form class="text-center" v-on:submit.prevent="postTip()">
+      <h1 class="text-center">Novo patrocinador</h1>
+      <!-- NOVO PATROCINADOR - INÍCIO -->
+      <form class="text-center" v-on:submit.prevent="">
         <div class="form-group mb-3">
           <label for="name"
             >Nome:
@@ -13,7 +13,7 @@
               id="name"
               name="name"
               class="form-control text-center"
-              placeholder="Digite o título"
+              placeholder="Digite o nome"
               v-model="form.name"
               :class="{ 'is-invalid': isSubmitted && v$.form.name.$error }"
             />
@@ -26,38 +26,19 @@
           </label>
         </div>
         <div class="form-group mb-3">
-          <label for="role"
-            >Cargo:
+          <label for="site"
+            >Site do Patrocinador:
             <input
               type="text"
-              id="role"
-              name="role"
+              id="site"
+              name="site"
               class="form-control text-center"
-              placeholder="Digite o título"
-              v-model="form.role"
-              :class="{ 'is-invalid': isSubmitted && v$.form.role.$error }"
+              placeholder="Link para o Site"
+              v-model="form.site"
+              :class="{ 'is-invalid': isSubmitted && v$.form.site.$error }"
             />
             <div
-              v-if="isSubmitted && v$.form.role.required"
-              class="invalid-feedback"
-            >
-              Este campo é obrigatório!
-            </div>
-          </label>
-        </div>
-        <div class="form-group mb-3">
-          <label for="text"
-            >Texto:
-            <br />
-            <textarea
-              name="text"
-              id="text"
-              class="border p-3 w-100"
-              v-model="form.text"
-              :class="{ 'is-invalid': isSubmitted && v$.form.text.$error }"
-            ></textarea>
-            <div
-              v-if="isSubmitted && v$.form.text.required"
+              v-if="isSubmitted && v$.form.site.required"
               class="invalid-feedback"
             >
               Este campo é obrigatório!
@@ -65,46 +46,47 @@
           </label>
         </div>
         <div class="form-group mb-5">
-          <label for="url"
-            >URL da Imagem:
+          <label for="imgUrl"
+            >URL do Avatar:
             <input
               type="text"
-              id="url"
-              name="url"
+              id="imgUrl"
+              name="imgUrl"
               class="form-control text-center"
-              placeholder="Link para o Imagem"
-              v-model="form.image"
-              :class="{ 'is-invalid': isSubmitted && v$.form.image.$error }"
+              placeholder="Link para o Avatar"
+              v-model="form.logo"
+              :class="{ 'is-invalid': isSubmitted && v$.form.logo.$error }"
             />
             <div
-              v-if="isSubmitted && v$.form.image.required"
+              v-if="isSubmitted && v$.form.logo.required"
               class="invalid-feedback"
             >
               Este campo é obrigatório!
             </div>
           </label>
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button @click="submitData()" type="submit" class="btn btn-primary">
+          Salvar
+        </button>
       </form>
-      <!-- NOVA DICA - FIM -->
+      <!-- NOVO PATROCINADOR - FIM -->
       <hr class="my-5" />
-      <!-- EDITAR DICAS - INÍCIO -->
-      <h1 class="text-center">Editar dicas</h1>
+      <!-- EDITAR PATROCINADOR - INÍCIO -->
+      <h1 class="text-center">Editar patrocinadores</h1>
       <div class="container">
         <div class="box-container d-flex flex-wrap justify-content-center">
-          <div class="card m-3" v-for="item in Tips" :key="item.id">
-            <div class="card-body position-relative">
+          <div class="card m-3" v-for="item in Sponsors" :key="item.id">
+            <div class="card-body text-center">
               <h4 class="card-title">{{ item.name }}</h4>
-              <p class="text-muted mb-3">{{ item.role }}</p>
               <div class="text-center">
                 <button
-                  @click="updateTip(item.id)"
+                  @click="updateSponsor(item.id)"
                   class="btn btn-primary btn-sm"
                 >
                   Editar
                 </button>
                 <button
-                  @click="deleteTip(item.id)"
+                  @click="deleteSPonsor(item.id)"
                   class="btn btn-danger btn-sm"
                 >
                   Deletar
@@ -114,13 +96,13 @@
           </div>
         </div>
       </div>
-      <!-- EDITAR DICAS - FIM -->
+      <!-- EDITAR PATROCINADOR - FIM -->
     </section>
     <FooterComponent />
   </div>
 </template>
 
-<script src="./manageTips.ts"></script>
+<script src="./manageSponsors.ts"></script>
 
 <style scoped>
 h1:first-of-type {
@@ -135,8 +117,8 @@ label {
   width: 25vw;
 }
 
-textarea {
-  text-align: justify;
+.card {
+  min-width: 15vw;
 }
 
 .card button:last-of-type {
