@@ -1,6 +1,14 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
+export interface ISocialActionParams {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/social-actions/" + id, {
@@ -10,7 +18,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: ISocialActionParams) {
     try {
       await api.post("/social-actions", body, {
         headers: {
@@ -22,7 +30,7 @@ export default {
       Alert.error("Erro ao criar ação.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: ISocialActionParams) {
     try {
       await api.patch("/social-actions/" + id, body, {
         headers: {

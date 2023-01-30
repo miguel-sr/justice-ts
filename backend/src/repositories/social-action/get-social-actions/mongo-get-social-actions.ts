@@ -21,7 +21,7 @@ export class MongoGetSocialActionsRepository
     } else {
       const socialActions = await MongoClient.db
         .collection<MongoType<SocialAction>>("social-actions")
-        .find({})
+        .find({}).sort({date: "descending"})
         .toArray();
 
       return MongoClient.mapArray(socialActions);

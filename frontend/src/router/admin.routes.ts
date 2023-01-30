@@ -76,4 +76,22 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/events",
+    name: "AdminManageSocialActions",
+    component: () =>
+      import("../views/admin/Social-Actions/manageSocialActions.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/events/:id",
+    name: "AdminUpdateSocialAction",
+    component: () =>
+      import("../views/admin/Social-Actions/updateSocialAction.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];
