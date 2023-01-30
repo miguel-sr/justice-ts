@@ -131,7 +131,8 @@ h1:first-of-type {
   padding: 2rem;
 }
 
-h1 {
+h1,
+h2 {
   color: var(--dark-blue);
 }
 
