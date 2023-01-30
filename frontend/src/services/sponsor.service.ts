@@ -2,6 +2,7 @@ import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
 export interface ISponsorParams {
+  id: string;
   name: string;
   site: string;
   logo: string;

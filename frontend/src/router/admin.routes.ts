@@ -60,4 +60,20 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/members",
+    name: "AdminManageMembers",
+    component: () => import("../views/admin/Members/manageMembers.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/members/:id",
+    name: "AdminUpdateMembers",
+    component: () => import("../views/admin/Members/updateMember.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];
