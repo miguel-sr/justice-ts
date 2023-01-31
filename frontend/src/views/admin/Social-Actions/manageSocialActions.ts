@@ -10,8 +10,8 @@ import SocialActionService, {
 } from "@/services/social-action.service";
 
 import TransformDateToYYYYMMDD from "@/utils/TransformDateTo-YYYY-MM-DD";
-import { Alert } from "@/lib/alert";
 import TransformDateToDDMMYYYY from "@/utils/TransformDateTo-DD-MM-YYYY";
+import { Alert } from "@/lib/alert";
 
 export default defineComponent({
   name: "AdminManageSocialActions",

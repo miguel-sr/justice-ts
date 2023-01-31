@@ -110,4 +110,20 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/parts",
+    name: "AdminManageParts",
+    component: () => import("../views/admin/Parts/manageParts.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/parts/:id",
+    name: "AdminUpdatePart",
+    component: () => import("../views/admin/Parts/updatePart.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];

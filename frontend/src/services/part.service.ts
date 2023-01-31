@@ -1,6 +1,16 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
 
+export interface IPartParams {
+  id: string;
+  category: string | number;
+  name: string;
+  description: string;
+  inventory: number;
+  limitPerOrder: number;
+  image: string;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/parts/" + id, {
@@ -10,7 +20,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: IPartParams) {
     try {
       await api.post("/parts", body, {
         headers: {
@@ -22,7 +32,7 @@ export default {
       Alert.error("Erro ao criar peça.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: IPartParams) {
     try {
       await api.patch("/parts/" + id, body, {
         headers: {
