@@ -18,7 +18,7 @@ export class MongoUpdatePartRepository implements IUpdatePartRepository {
       }
     );
 
-    const part = MongoClient.db
+    const part = await MongoClient.db
       .collection<MongoType<Part>>("parts")
       .findOne({ _id: new ObjectId(id) });
 
