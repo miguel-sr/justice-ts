@@ -43,7 +43,7 @@ routes.patch("/parts/:id", auth, async (req, res) => {
   res.status(statusCode).send(body);
 });
 
-routes.post("/parts/:id", auth, async (req, res) => {
+routes.delete("/parts/:id", auth, async (req, res) => {
   const mongoDeletePartRepository = new MongoDeletePartRepository();
   const deletePartController = new DeletePartController(
     mongoDeletePartRepository
