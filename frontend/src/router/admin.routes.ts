@@ -94,4 +94,20 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/categories",
+    name: "AdminManageCategories",
+    component: () => import("../views/admin/Categories/manageCategories.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
+  {
+    path: "/admin/categories/:id",
+    name: "AdminUpdateCategory",
+    component: () => import("../views/admin/Categories/updateCategory.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];

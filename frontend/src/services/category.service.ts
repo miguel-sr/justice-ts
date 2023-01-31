@@ -1,6 +1,13 @@
 import { Alert } from "@/lib/alert";
 import { api } from "@/lib/axios";
 
+export interface ICategoryParams {
+  id: string;
+  name: string;
+  slug: string;
+  createdAt: Date;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get("/categories/" + id, {
@@ -10,7 +17,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: ICategoryParams) {
     try {
       await api.post("/categories", body, {
         headers: {
@@ -22,7 +29,7 @@ export default {
       Alert.error("Erro ao criar categoria.");
     }
   },
-  async update(id: string, body: JSON) {
+  async update(id: string, body: ICategoryParams) {
     try {
       await api.patch("/categories/" + id, body, {
         headers: {
