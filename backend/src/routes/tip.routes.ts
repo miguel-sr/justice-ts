@@ -2,6 +2,8 @@ import { Router } from "express";
 import auth from "../middlewares/auth";
 import { MongoGetTipsRepository } from "../repositories/tip/get-tips/mongo-get-tips";
 import { GetTipsController } from "../controllers/tip/get-tips/get-tips";
+import { MongoGetTipsPaginationRepository } from "../repositories/tip/get-tips/mongo-get-tips-pagination";
+import { GetTipsPaginationController } from "../controllers/tip/get-tips/get-tips-pagination";
 import { MongoCreateTipRepository } from "../repositories/tip/create-tip/mongo-create-tip";
 import { CreateTipController } from "../controllers/tip/create-tip/create-tip";
 import { MongoUpdateTipRepository } from "../repositories/tip/update-tip/mongo-update-tip";
@@ -15,6 +17,18 @@ routes.get("/tips/:id?", async (req, res) => {
   const mongoGetTipsRepository = new MongoGetTipsRepository();
   const getTipsController = new GetTipsController(mongoGetTipsRepository);
   const { body, statusCode } = await getTipsController.handle({
+    params: req.params,
+  });
+  res.status(statusCode).send(body);
+});
+
+routes.get("/tips-pagination/:itemsPerPage?/:skip?", async (req, res) => {
+  const mongoGetTipsPaginationRepository =
+    new MongoGetTipsPaginationRepository();
+  const getTipsPaginationController = new GetTipsPaginationController(
+    mongoGetTipsPaginationRepository
+  );
+  const { body, statusCode } = await getTipsPaginationController.handle({
     params: req.params,
   });
   res.status(statusCode).send(body);

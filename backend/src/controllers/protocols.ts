@@ -8,7 +8,8 @@ export interface IHttpRequest<B> {
   params?: {
     id?: string;
     slug?: string;
-    isPagination?: string;
+    itemsPerPage?: string;
+    skip?: string;
   };
   headers?: any;
   body?: B;
