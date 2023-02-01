@@ -3,7 +3,7 @@ import { api } from "@/lib/axios";
 
 export default {
   async get(id = "") {
-    const response = await api.get("/orders/" + id, {
+    const response = await api.get(`/orders/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -24,7 +24,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/orders/" + id, {
+      await api.delete(`/orders/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

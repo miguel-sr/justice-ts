@@ -10,7 +10,7 @@ export interface ISponsorParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/sponsors/" + id, {
+    const response = await api.get(`/sponsors/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -31,7 +31,7 @@ export default {
   },
   async update(id: string, body: ISponsorParams) {
     try {
-      await api.patch("/sponsors/" + id, body, {
+      await api.patch(`/sponsors/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -43,7 +43,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/sponsors/" + id, {
+      await api.delete(`/sponsors/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

@@ -11,7 +11,7 @@ export interface ISocialActionParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/social-actions/" + id, {
+    const response = await api.get(`/social-actions/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -32,7 +32,7 @@ export default {
   },
   async update(id: string, body: ISocialActionParams) {
     try {
-      await api.patch("/social-actions/" + id, body, {
+      await api.patch(`/social-actions/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -44,7 +44,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/social-actions/" + id, {
+      await api.delete(`/social-actions/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

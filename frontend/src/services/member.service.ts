@@ -11,7 +11,7 @@ export interface IMemberParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/members/" + id, {
+    const response = await api.get(`/members/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -32,7 +32,7 @@ export default {
   },
   async update(id: string, body: IMemberParams) {
     try {
-      await api.patch("/members/" + id, body, {
+      await api.patch(`/members/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -44,7 +44,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/members/" + id, {
+      await api.delete(`/members/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

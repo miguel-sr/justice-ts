@@ -11,7 +11,7 @@ export interface ITipParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/tips/" + id, {
+    const response = await api.get(`/tips/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -32,7 +32,7 @@ export default {
   },
   async update(id: string, body: ITipParams) {
     try {
-      await api.patch("/tips/" + id, body, {
+      await api.patch(`/tips/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -44,7 +44,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/tips/" + id, {
+      await api.delete(`/tips/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

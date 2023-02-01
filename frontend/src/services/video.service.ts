@@ -10,7 +10,7 @@ export interface IVideoParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/videos/" + id, {
+    const response = await api.get(`/videos/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -31,7 +31,7 @@ export default {
   },
   async update(id: string, body: IVideoParams) {
     try {
-      await api.patch("/videos/" + id, body, {
+      await api.patch(`/videos/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -43,7 +43,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/videos/" + id, {
+      await api.delete(`/videos/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

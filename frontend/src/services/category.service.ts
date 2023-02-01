@@ -10,7 +10,7 @@ export interface ICategoryParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/categories/" + id, {
+    const response = await api.get(`/categories/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -31,7 +31,7 @@ export default {
   },
   async update(id: string, body: ICategoryParams) {
     try {
-      await api.patch("/categories/" + id, body, {
+      await api.patch(`/categories/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -43,7 +43,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/categories/" + id, {
+      await api.delete(`/categories/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },

@@ -13,7 +13,7 @@ export interface IPartParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get("/parts/" + id, {
+    const response = await api.get(`/parts/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
@@ -34,7 +34,7 @@ export default {
   },
   async update(id: string, body: IPartParams) {
     try {
-      await api.patch("/parts/" + id, body, {
+      await api.patch(`/parts/${id}`, body, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -46,7 +46,7 @@ export default {
   },
   async delete(id: string) {
     try {
-      await api.delete("/parts/" + id, {
+      await api.delete(`/parts/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
