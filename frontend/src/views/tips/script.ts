@@ -16,17 +16,34 @@ export default defineComponent({
     return {
       tips: null,
       dataIsLoaded: false,
+      itemsPerPage: 6,
+      pages: [0],
     };
   },
   mounted() {
     this.loadData();
+    this.calcPages();
   },
   methods: {
-    async loadData() {
+    changePage(page: number) {
+      this.loadData(this.itemsPerPage * (page - 1));
+    },
+    async calcPages() {
+      const response = await TipService.getPagination();
+      const numberOfDocuments = response.numberOfDocuments;
+      const numberOfPages = Math.ceil(numberOfDocuments / this.itemsPerPage);
+      this.pages.length = 0;
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    async loadData(skip = 0) {
       try {
-        this.tips = await TipService.get();
+        window.scrollTo(0, 0);
+        this.dataIsLoaded = false;
+        this.tips = await TipService.getPagination(this.itemsPerPage, skip);
       } catch (error) {
-        Alert.error("Erro ao carregar videos.");
+        Alert.error("Erro ao carregar dicas.");
       } finally {
         this.dataIsLoaded = true;
       }

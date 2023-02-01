@@ -11,11 +11,15 @@ export interface ITipParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get(`/tips/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
-    });
+    const response = await api.get(`/tips/${id}`);
+    return response.data;
+  },
+  async getPagination(itemsPerPage?: number, skip?: number) {
+    if (!itemsPerPage && !skip) {
+      const response = await api.get(`/tips-pagination/`);
+      return response.data;
+    }
+    const response = await api.get(`/tips-pagination/${itemsPerPage}/${skip}`);
     return response.data;
   },
   async post(body: ITipParams) {
