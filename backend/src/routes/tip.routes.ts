@@ -16,7 +16,6 @@ routes.get("/tips/:id?", async (req, res) => {
   const getTipsController = new GetTipsController(mongoGetTipsRepository);
   const { body, statusCode } = await getTipsController.handle({
     params: req.params,
-    body: req.body,
   });
   res.status(statusCode).send(body);
 });

@@ -5,7 +5,11 @@ export interface IHttpResponse<T> {
 
 // ==> B: Body
 export interface IHttpRequest<B> {
-  params?: { id?: string; slug?: string };
+  params?: {
+    id?: string;
+    slug?: string;
+    isPagination?: string;
+  };
   headers?: any;
   body?: B;
 }
