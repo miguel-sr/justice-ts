@@ -5,6 +5,11 @@ export interface Order {
   teamNumber: string;
   email: string;
   reason: string;
-  cart: Array<{ id: number; amount: number }>;
+  cart: Array<{
+    id: string;
+    description: string;
+    amount: number;
+    image: string;
+  }>;
   createdAt: Date;
 }

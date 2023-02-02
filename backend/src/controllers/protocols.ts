@@ -8,6 +8,7 @@ export interface IHttpRequest<B> {
   params?: {
     id?: string;
     slug?: string;
+    updateInventoryOperation?: string;
     itemsPerPage?: string;
     skip?: string;
   };

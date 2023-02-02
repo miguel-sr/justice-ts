@@ -8,6 +8,8 @@ import { MongoUpdatePartRepository } from "../repositories/part/update-part/mong
 import { UpdatePartController } from "../controllers/part/update-part/update-part";
 import { MongoDeletePartRepository } from "../repositories/part/delete-part/mongo-delete-part";
 import { DeletePartController } from "../controllers/part/delete-part/delete-part";
+import { MongoUpdateInventoryRepository } from "../repositories/part/update-inventory/mongo-update-inventory";
+import { UpdateInventoryController } from "../controllers/part/update-inventory/update-part";
 
 const routes = Router();
 
@@ -39,6 +41,17 @@ routes.patch("/parts/:id", auth, async (req, res) => {
   const { body, statusCode } = await updatePartController.handle({
     body: req.body,
     params: req.params,
+  });
+  res.status(statusCode).send(body);
+});
+
+routes.patch("/parts-inventory/:operation", async (req, res) => {
+  const mongoUpdateInventoryRepository = new MongoUpdateInventoryRepository();
+  const updateInventoryController = new UpdateInventoryController(
+    mongoUpdateInventoryRepository
+  );
+  const { body, statusCode } = await updateInventoryController.handle({
+    body: req.body,
   });
   res.status(statusCode).send(body);
 });

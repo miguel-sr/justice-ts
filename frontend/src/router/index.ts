@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import adminRoutes from "./admin.routes";
+import storeRoutes from "./store.routes";
 import auth from "@/middlewares/auth";
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/tips/TipsPage.vue"),
   },
   ...adminRoutes,
+  ...storeRoutes,
 ];
 
 const router = createRouter({

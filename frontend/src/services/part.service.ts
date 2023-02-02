@@ -1,5 +1,6 @@
 import { api } from "@/lib/axios";
 import { Alert } from "@/lib/alert";
+import { ICartItemParams } from "@/views/store/Index/script";
 
 export interface IPartParams {
   id: string;
@@ -39,6 +40,14 @@ export default {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       });
+      Alert.success("Peça atualizada com sucesso.");
+    } catch (err) {
+      Alert.error("Erro ao atualizar peça.");
+    }
+  },
+  async updateInventory(operation: string, body: ICartItemParams[]) {
+    try {
+      await api.patch(`/parts-inventory/${operation}`, body);
       Alert.success("Peça atualizada com sucesso.");
     } catch (err) {
       Alert.error("Erro ao atualizar peça.");

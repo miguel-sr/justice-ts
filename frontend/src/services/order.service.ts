@@ -1,6 +1,20 @@
 import { Alert } from "@/lib/alert";
 import { api } from "@/lib/axios";
 
+export interface IOrderParams {
+  name: string;
+  teamName: string;
+  teamNumber: string;
+  email: string;
+  reason: string;
+  cart: Array<{
+    id: string;
+    description: string;
+    amount: number;
+    image: string;
+  }>;
+}
+
 export default {
   async get(id = "") {
     const response = await api.get(`/orders/${id}`, {
@@ -10,7 +24,7 @@ export default {
     });
     return response.data;
   },
-  async post(body: JSON) {
+  async post(body: IOrderParams) {
     try {
       await api.post("/orders", body, {
         headers: {
