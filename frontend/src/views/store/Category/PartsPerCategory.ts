@@ -1,18 +1,22 @@
 import { defineComponent } from "vue";
 import CategoryService, { ICategoryParams } from "@/services/category.service";
 import PartService, { IPartParams } from "@/services/part.service";
+
+import { ICartItemParams } from "../Index/script";
+
+import LoadingComponent from "../../../components/Loading/LoadingComponent.vue";
+import NavbarComponent from "../../../components/Navbar/NavbarComponent.vue";
+import FooterComponent from "../../../components/FooterComponent.vue";
 import CartButton from "../../../components/Store/CartButton.vue";
 import CartWindow from "../../../components/Store/Cart/CartWindow.vue";
 import ReturnButton from "../../../components/Store/ReturnButton.vue";
 import CardForProduct from "../../../components/Store/Product/CardForProduct.vue";
-import { ICartItemParams } from "../Index/script";
-
-import NavbarComponent from "../../../components/Navbar/NavbarComponent.vue";
-import FooterComponent from "../../../components/FooterComponent.vue";
+import { Alert } from "@/lib/alert";
 
 export default defineComponent({
   name: "CategoryView",
   components: {
+    LoadingComponent,
     CardForProduct,
     CartWindow,
     CartButton,
@@ -36,6 +40,7 @@ export default defineComponent({
       ],
       emptyCart: false,
       cartState: false,
+      dataIsLoaded: false,
     };
   },
   mounted() {
@@ -91,17 +96,24 @@ export default defineComponent({
       this.cartState = false;
     },
     async loadData() {
-      await CategoryService.get(
-        window.location.pathname.replaceAll("/pedido/categoria/", "")
-      ).then((category: ICategoryParams) => {
-        this.category.name = category.name;
-      });
-      const parts = await PartService.get();
-      this.Parts = parts.filter(
-        (part: IPartParams) =>
-          part.category ===
+      try {
+        this.dataIsLoaded = false;
+        await CategoryService.get(
           window.location.pathname.replaceAll("/pedido/categoria/", "")
-      );
+        ).then((category: ICategoryParams) => {
+          this.category.name = category.name;
+        });
+        const parts = await PartService.get();
+        this.Parts = parts.filter(
+          (part: IPartParams) =>
+            part.category ===
+            window.location.pathname.replaceAll("/pedido/categoria/", "")
+        );
+      } catch (error) {
+        Alert.error("Erro ao carregar peças.");
+      } finally {
+        this.dataIsLoaded = true;
+      }
     },
   },
 });

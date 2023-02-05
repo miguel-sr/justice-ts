@@ -10,6 +10,8 @@ import { MongoDeletePartRepository } from "../repositories/part/delete-part/mong
 import { DeletePartController } from "../controllers/part/delete-part/delete-part";
 import { MongoUpdateInventoryRepository } from "../repositories/part/update-inventory/mongo-update-inventory";
 import { UpdateInventoryController } from "../controllers/part/update-inventory/update-part";
+import { MongoGetPartsPaginationRepository } from "../repositories/part/get-parts/mongo-get-parts-pagination";
+import { GetPartsPaginationController } from "../controllers/part/get-parts/get-parts-pagination";
 
 const routes = Router();
 
@@ -17,6 +19,18 @@ routes.get("/parts/:id?", async (req, res) => {
   const mongoGetPartsRepository = new MongoGetPartsRepository();
   const getPartsController = new GetPartsController(mongoGetPartsRepository);
   const { body, statusCode } = await getPartsController.handle({
+    params: req.params,
+  });
+  res.status(statusCode).send(body);
+});
+
+routes.get("/parts-pagination/:itemsPerPage?/:skip?", async (req, res) => {
+  const mongoGetPartsPaginationRepository =
+    new MongoGetPartsPaginationRepository();
+  const getPartsPaginationController = new GetPartsPaginationController(
+    mongoGetPartsPaginationRepository
+  );
+  const { body, statusCode } = await getPartsPaginationController.handle({
     params: req.params,
   });
   res.status(statusCode).send(body);

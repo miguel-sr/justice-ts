@@ -21,6 +21,14 @@ export default {
     });
     return response.data;
   },
+  async getPagination(itemsPerPage?: number, skip?: number) {
+    if (!itemsPerPage && !skip) {
+      const response = await api.get(`/parts-pagination/`);
+      return response.data;
+    }
+    const response = await api.get(`/parts-pagination/${itemsPerPage}/${skip}`);
+    return response.data;
+  },
   async post(body: IPartParams) {
     try {
       await api.post("/parts", body, {

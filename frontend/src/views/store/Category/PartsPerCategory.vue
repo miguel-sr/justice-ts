@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LoadingComponent v-if="!dataIsLoaded" />
     <NavbarComponent />
     <section>
       <div id="cart-button" class="btn">
