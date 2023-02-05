@@ -47,7 +47,7 @@ export default defineComponent({
           skip
         );
       } catch (error) {
-        Alert.error("Erro ao carregar videos.");
+        Alert.error("Erro ao carregar eventos.");
       } finally {
         this.dataIsLoaded = true;
       }
