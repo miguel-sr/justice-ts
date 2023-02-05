@@ -64,4 +64,21 @@ footer p {
   color: #ffffff;
   font-size: 1.1rem;
 }
+
+@media (max-width: 768.98px) {
+  footer #social img {
+    width: 60px;
+    margin-right: 30px;
+  }
+  footer #social a {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+  }
+
+  footer p {
+    color: #ffffff;
+    font-size: 0.8rem;
+  }
+}
 </style>
