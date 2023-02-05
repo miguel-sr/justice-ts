@@ -5,17 +5,27 @@ export const MongoClient = {
   db: undefined as unknown as Db,
 
   async connect(): Promise<void> {
-    const url = process.env.DB_URL || "localhost:27017";
+    const url = process.env.DB_URL || "mongodb://localhost:27017";
     const username = process.env.DB_USERNAME;
     const password = process.env.DB_PASSWORD;
 
-    const client = new Mongo(url, { auth: { username, password } });
-    const db = client.db("justice-api");
+    const client = new Mongo(url, {
+      auth: { username, password },
+    });
+
+    client
+      .connect()
+      .then(() => {
+        console.log("==> Connected to mongodb!");
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+
+    const db = client.db(process.env.DB_NAME);
 
     this.client = client;
     this.db = db;
-
-    console.log("==> Connected to mongodb!");
   },
   map(data: any) {
     const { _id, ...rest } = data;

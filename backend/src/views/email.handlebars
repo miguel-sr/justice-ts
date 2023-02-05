@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      td, th { padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <div
+      style="font-family: Arial, Helvetica, sans-serif; width: 100%; text-align: center;"
+    >
+      <img
+        src="https://lh3.googleusercontent.com/CSM0kMxICQrtBlRxigFWRkjBNwFkTjNiG_YKekIAs13k7FL0mn2yNU0BI4PhZjAc6B8Ul4RWL-T7Twuko1QcditeJojR44rnudoOVlUt8jRiDwVio3Lmzhmw6324bpAbsKd2OA2w9W9vzjtC5UQ3UuS_eB8reRai-YN7h_zoSQhb1su7OeWSzN8inujhdfQhPaLqy-MBiEdsnc9JbOv6YT-rT5VTyBsd9D21kOFKm2DdKrY1D5xh5N_yGL7OlTPn0Pg45-oh9Dzou796HTExzdQTi1tH1ycpiiEAmv_F9qfqAy_OFOHjgetp5CNU_UJcRjD3v7YQA07rkOSfWKmfjxT_yMFHMuimf40warpHaf81brPDWyhC78DAqNrsLe3SgHjcXGOn_XO90wD6AfKYckDXztCWxe4G0zBX_ZKUMWM8thwhJiwBCKN4vOWqwhnGECfyWJq_kofNq-DpiTIMBnqgxa-lkkQcQ23MhiIOgMwU7ETHeGSQa9nnwU5VJNRFsAkTvDqGDai5H40NXpjE4xelNli_70b6QV_KCeGSsvPbVZq-goSvwZ88bIPU2akPYrhwgJpRq-5Gk39CDK06geGXsLZFJsP5l1BQRErOHFMofOoPbHf3JN5BE7B8EkPRPBnyFSZBMh9cp3h-1YPYR3SJ_2QC7I7D45gQApNl-fi3GMg0ePASVOst5_RZNwaD0kHPm0Tf-1YKeQGt1HALn_LeGj3orksXKrGr-7BeMu8FNWNT-h3Ew6bJ2t5VYb5W2JqoIfIIejNwGC8tSl-_mLhivzCaEvCubx0W1Ui2Yf7mvqSbSuThcqX7nmRRmFskXiPhL6QvzebWYt0-vzzIfCEtnSahKAzSstllRj8gFcUuwcA5utP-wZFgcqX7CBtOvtcobkCQ-12Lz6kOa3M4_TX0tzCPEnW90Dg2QtRFMVjlOoxfvD-9CPqK8NRmDJm2oe3fqDZHojfGF4JMuw=w1099-h757-s-no?authuser=1"
+        style="width: 200px;"
+      />
+      <h3 style="margin-top: 0; color: #000">{{message}}</h3>
+      {{#if contact}}
+        <p style="color: #6c757d;">{{contact}}</p>
+      {{/if}}
+      <table id="table" cellspacing="2" style="margin: 0 auto; width: 50%;">
+        <tr>
+          <th colspan="2" style="color: #000">Resumo do Pedido:</th>
+        </tr>
+        <tr>
+          <td style="background-color: #dfdfe2; color: #000"><b>Descrição do
+              Item</b></td>
+          <td style="background-color: #dfdfe2; color: #000"><b
+            >Quantidade</b></td>
+        </tr>
+        {{#each item}}
+          <tr>
+            <td
+              style="border: 1px solid #dfdfe2; color: #000"
+            >{{description}}</td>
+            <td style="border: 1px solid #dfdfe2; color: #000">{{amount}}</td>
+          </tr>
+        {{/each}}
+      </table>
+      <footer style="text-align: center; margin-top: 20px; color: #000">
+        Atenciosamente,
+        <br />
+        Justice FTC Team
+        <br />
+      </footer>
+    </div>
+  </body>
+</html>

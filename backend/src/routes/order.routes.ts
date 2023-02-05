@@ -6,6 +6,7 @@ import { MongoCreateOrderRepository } from "../repositories/order/create-order/m
 import { CreateOrderController } from "../controllers/order/create-order/create-order";
 import { MongoDeleteOrderRepository } from "../repositories/order/delete-order/mongo-delete-order";
 import { DeleteOrderController } from "../controllers/order/delete-order/delete-order";
+import { SendMailController } from "../controllers/mail/send-mail";
 
 const routes = Router();
 
@@ -20,12 +21,16 @@ routes.get("/orders/:id?", async (req, res) => {
 
 routes.post("/orders", auth, async (req, res) => {
   const mongoCreateOrderRepository = new MongoCreateOrderRepository();
+  const sendMailController = new SendMailController();
   const createOrderController = new CreateOrderController(
     mongoCreateOrderRepository
   );
+
   const { body, statusCode } = await createOrderController.handle({
     body: req.body,
   });
+
+  await sendMailController.handle({ body: req.body });
   res.status(statusCode).send(body);
 });
 
