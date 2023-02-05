@@ -126,4 +126,12 @@ export default [
       isAdmin: true,
     },
   },
+  {
+    path: "/admin/orders/",
+    name: "AdminManageOrders",
+    component: () => import("../views/admin/Orders/manageOrders.vue"),
+    meta: {
+      isAdmin: true,
+    },
+  },
 ];

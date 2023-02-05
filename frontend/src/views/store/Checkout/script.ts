@@ -88,7 +88,7 @@ export default defineComponent({
         Promise.all(promises).then(async (results) => {
           if (!results.includes(true)) {
             await OrderService.post(this.form);
-            await PartService.updateInventory("add", this.form.cart);
+            await PartService.updateInventory("remove", this.form.cart);
             localStorage.removeItem("cart");
           }
         });

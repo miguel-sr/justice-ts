@@ -45,12 +45,13 @@ routes.patch("/parts/:id", auth, async (req, res) => {
   res.status(statusCode).send(body);
 });
 
-routes.patch("/parts-inventory/:operation", async (req, res) => {
+routes.patch("/parts-inventory/:updateInventoryOperation", async (req, res) => {
   const mongoUpdateInventoryRepository = new MongoUpdateInventoryRepository();
   const updateInventoryController = new UpdateInventoryController(
     mongoUpdateInventoryRepository
   );
   const { body, statusCode } = await updateInventoryController.handle({
+    params: req.params,
     body: req.body,
   });
   res.status(statusCode).send(body);
