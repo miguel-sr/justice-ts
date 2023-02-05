@@ -12,12 +12,12 @@ export class MongoGetSocialActionsPaginationRepository
   ): Promise<SocialAction[] | { numberOfDocuments: number }> {
     if (!itemsPerPage) {
       const numberOfDocuments = await MongoClient.db
-        .collection("tips")
+        .collection("social-actions")
         .countDocuments();
       return { numberOfDocuments };
     } else {
       const socialActions = await MongoClient.db
-        .collection<MongoType<SocialAction>>("tips")
+        .collection<MongoType<SocialAction>>("social-actions")
         .find({})
         .skip(parseInt(skip))
         .limit(parseInt(itemsPerPage))

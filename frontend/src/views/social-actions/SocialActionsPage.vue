@@ -18,6 +18,16 @@
         </div>
       </div>
     </section>
+    <div class="d-flex justify-content-center align-items-center mb-3 gap-1">
+      <div
+        v-for="item in pages"
+        :key="item"
+        @click="changePage(item)"
+        class="pages text-white"
+      >
+        {{ item }}
+      </div>
+    </div>
     <FooterComponent />
   </div>
 </template>
@@ -43,6 +53,22 @@ h1 {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
+}
+
+.pages {
+  font-size: 1.5em;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: var(--dark-blue);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+.pages:hover {
+  opacity: 0.75;
 }
 
 @media (max-width: 768.98px) {

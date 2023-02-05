@@ -1,6 +1,6 @@
 import { defineComponent } from "vue";
 import dayjs from "dayjs";
-import socialActionService from "@/services/social-action.service";
+import SocialActionService from "@/services/social-action.service";
 import LoadingComponent from "../../components/Loading/LoadingComponent.vue";
 import NavbarComponent from "../../components/Navbar/NavbarComponent.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
@@ -17,15 +17,35 @@ export default defineComponent({
     return {
       socialActions: null,
       dataIsLoaded: false,
+      itemsPerPage: 8,
+      pages: [0],
     };
   },
   mounted() {
     this.loadData();
+    this.calcPages();
   },
   methods: {
-    async loadData() {
+    changePage(page: number) {
+      this.loadData(this.itemsPerPage * (page - 1));
+    },
+    async calcPages() {
+      const response = await SocialActionService.getPagination();
+      const numberOfDocuments = response.numberOfDocuments;
+      const numberOfPages = Math.ceil(numberOfDocuments / this.itemsPerPage);
+      this.pages.length = 0;
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    async loadData(skip = 0) {
       try {
-        this.socialActions = await socialActionService.get();
+        window.scrollTo(0, 0);
+        this.dataIsLoaded = false;
+        this.socialActions = await SocialActionService.getPagination(
+          this.itemsPerPage,
+          skip
+        );
       } catch (error) {
         Alert.error("Erro ao carregar videos.");
       } finally {

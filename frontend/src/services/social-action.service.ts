@@ -11,11 +11,17 @@ export interface ISocialActionParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get(`/social-actions/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
-    });
+    const response = await api.get(`/social-actions/${id}`);
+    return response.data;
+  },
+  async getPagination(itemsPerPage?: number, skip?: number) {
+    if (!itemsPerPage && !skip) {
+      const response = await api.get(`/social-actions-pagination/`);
+      return response.data;
+    }
+    const response = await api.get(
+      `/social-actions-pagination/${itemsPerPage}/${skip}`
+    );
     return response.data;
   },
   async post(body: ISocialActionParams) {
