@@ -5,8 +5,6 @@ import hbs from "nodemailer-express-handlebars";
 import { config } from "dotenv";
 config();
 
-console.log(process.env.ZOHO_USER, process.env.ZOHO_PASS);
-
 const transporter = nodemailer.createTransport({
   host: "smtp.zoho.com",
   secure: true,
