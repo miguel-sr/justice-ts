@@ -22,6 +22,10 @@ export default defineComponent({
     };
   },
   mounted() {
+    if (process.env.VUE_APP_SOCIAL_ACTIONS_PER_PAGE) {
+      this.itemsPerPage = parseInt(process.env.VUE_APP_SOCIAL_ACTIONS_PER_PAGE);
+    }
+
     this.loadData();
     this.calcPages();
   },

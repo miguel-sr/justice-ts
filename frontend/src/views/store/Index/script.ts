@@ -49,6 +49,10 @@ export default defineComponent({
     };
   },
   mounted() {
+    if (process.env.VUE_APP_PARTS_PER_PAGE) {
+      this.itemsPerPage = parseInt(process.env.VUE_APP_PARTS_PER_PAGE);
+    }
+
     this.cart.length = 0;
     this.loadData();
     this.calcPages();
