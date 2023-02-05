@@ -8,6 +8,8 @@ import { MongoCreateVideoRepository } from "../repositories/video/create-video/m
 import { MongoDeleteVideoRepository } from "../repositories/video/delete-video/mongo-delete-video";
 import { MongoGetVideosRepository } from "../repositories/video/get-videos/mongo-get-videos";
 import { MongoUpdateVideoRepository } from "../repositories/video/update-video/mongo-update-video";
+import { MongoGetVideosPaginationRepository } from "../repositories/video/get-videos/mongo-get-videos-pagination";
+import { GetVideosPaginationController } from "../controllers/video/get-videos/get-videos-pagination";
 
 const routes = Router();
 
@@ -15,6 +17,18 @@ routes.get("/videos/:id?", async (req, res) => {
   const mongoGetVideosRepository = new MongoGetVideosRepository();
   const getVideosController = new GetVideosController(mongoGetVideosRepository);
   const { body, statusCode } = await getVideosController.handle({
+    params: req.params,
+  });
+  res.status(statusCode).send(body);
+});
+
+routes.get("/videos-pagination/:itemsPerPage?/:skip?", async (req, res) => {
+  const mongoGetVideosPaginationRepository =
+    new MongoGetVideosPaginationRepository();
+  const getVideosPaginationController = new GetVideosPaginationController(
+    mongoGetVideosPaginationRepository
+  );
+  const { body, statusCode } = await getVideosPaginationController.handle({
     params: req.params,
   });
   res.status(statusCode).send(body);

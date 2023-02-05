@@ -10,11 +10,17 @@ export interface IVideoParams {
 
 export default {
   async get(id = "") {
-    const response = await api.get(`/videos/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
-    });
+    const response = await api.get(`/videos/${id}`);
+    return response.data;
+  },
+  async getPagination(itemsPerPage?: number, skip?: number) {
+    if (!itemsPerPage && !skip) {
+      const response = await api.get(`/videos-pagination/`);
+      return response.data;
+    }
+    const response = await api.get(
+      `/videos-pagination/${itemsPerPage}/${skip}`
+    );
     return response.data;
   },
   async post(body: IVideoParams) {
