@@ -48,9 +48,8 @@ export default {
   async updateInventory(operation: string, body: ICartItemParams[]) {
     try {
       await api.patch(`/parts-inventory/${operation}`, body);
-      Alert.success("Peça atualizada com sucesso.");
-    } catch (err) {
-      Alert.error("Erro ao atualizar peça.");
+    } catch (error) {
+      console.log(error);
     }
   },
   async delete(id: string) {
