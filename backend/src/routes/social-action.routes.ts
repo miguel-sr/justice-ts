@@ -8,6 +8,8 @@ import { MongoUpdateSocialActionRepository } from "../repositories/social-action
 import { UpdateSocialActionController } from "../controllers/social-action/update-social-action/update-social-action";
 import { MongoDeleteSocialActionRepository } from "../repositories/social-action/delete-social-action/mongo-delete-social-action";
 import { DeleteSocialActionController } from "../controllers/social-action/delete-social-action/delete-social-action";
+import { MongoGetSocialActionsPaginationRepository } from "../repositories/social-action/get-social-actions/mongo-get-social-actions-pagination";
+import { GetSocialActionsPaginationController } from "../controllers/social-action/get-social-actions/get-social-actions-pagination";
 
 const routes = Router();
 
@@ -21,6 +23,23 @@ routes.get("/social-actions/:id?", async (req, res) => {
   });
   res.status(statusCode).send(body);
 });
+
+routes.get(
+  "/social-actions-pagination/:itemsPerPage?/:skip?",
+  async (req, res) => {
+    const mongoGetSocialActionsPaginationRepository =
+      new MongoGetSocialActionsPaginationRepository();
+    const getSocialActionsPaginationController =
+      new GetSocialActionsPaginationController(
+        mongoGetSocialActionsPaginationRepository
+      );
+    const { body, statusCode } =
+      await getSocialActionsPaginationController.handle({
+        params: req.params,
+      });
+    res.status(statusCode).send(body);
+  }
+);
 
 routes.post("/social-actions", auth, async (req, res) => {
   const mongoCreateSocialActionRepository =
