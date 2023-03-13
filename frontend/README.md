@@ -1,24 +1,14 @@
-# frontend
+## Status do Projeto
 
-## Project setup
-```
-npm install
-```
+![Bagde](https://img.shields.io/badge/Status%20do%20Projeto-Concluído-green)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+---
 
-### Compiles and minifies for production
-```
-npm run build
-```
+<p align="center">
+<img src="https://raw.githubusercontent.com/miguel-sr/nlw-setup/main/gh-assets/habits.svg">
+</p>
 
-### Lints and fixes files
-```
-npm run lint
-```
+---
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<h1>Descrição</h1>
+<p style="text-align: justify; color: whitesmoke">Projeto .... 
